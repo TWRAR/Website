@@ -14,24 +14,30 @@
 <link rel="canonical" href="https://twrar.stuxie.dev/legal/terms">
 <link rel="icon" type="image/png" href="../assets/icon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="../assets/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="../assets/fontawesome/css/brands.min.css">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
+<div class="env-banner env-banner-dev" id="dev-banner" hidden><span><strong class="env-banner-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Development Mode</strong><span class="env-banner-detail" id="dev-banner-detail"></span></span></div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="brand">
-      <img src="../assets/icon.png" alt="" class="brand-icon">
-      <span>TWRAR</span>
+      <img src="../assets/logo.png" alt="TWRAR" class="brand-logo">
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
-      <a href="https://github.com/TWRAR/Engine" class="nav-gh">GitHub</a>
+      <a href="/#get-started">Get started</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
     </nav>
     <div class="header-controls">
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
-        <span class="icon-sun">&#9728;</span><span class="icon-moon">&#9789;</span>
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
       <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -41,13 +47,20 @@
 </header>
 
 <main id="top">
-  <section class="section legal-doc">
-    <div class="container">
-      <p class="breadcrumb"><a href="/legal">&larr; Boring Legal Stuff</a></p>
+  <section class="hero legal-hero">
+    <div class="container hero-inner">
       <h1 class="page-title">Terms and Ethics</h1>
-      <p class="legal-updated">Last updated: 2026-09-10</p>
+      <p class="hero-sub">The rules for using this site, and using TWRAR responsibly.</p>
+    </div>
+  </section>
 
-      <h2>Using this site</h2>
+  <section class="section">
+    <div class="container">
+      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
+      <div class="legal-prose">
+        <p class="legal-meta">Last updated: 2026-09-10</p>
+
+<h2>Using this site</h2>
       <p>This site is provided as-is, for information about TWRAR. Don't
       attempt to disrupt it, scrape it abusively, or use it to distribute
       malware.</p>
@@ -66,6 +79,7 @@
       <h2>Changes</h2>
       <p>These terms may be updated as the project evolves; the "Last
       updated" date above reflects the latest revision.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -78,22 +92,34 @@
         <span>TWRAR</span>
       </a>
       <p class="footer-tagline">The Website Recorder And Replayer</p>
+      <p class="footer-versions"><span data-version="engine" data-version-prefix="Engine ">Engine vX.Y.Z</span><span data-version="website" data-version-prefix="Website ">Website vX.Y.Z</span></p>
     </div>
     <div class="footer-col">
       <h3 class="footer-heading">Project</h3>
-      <a href="https://github.com/TWRAR/Engine">Engine repo</a>
-      <a href="https://github.com/TWRAR/Website">Website repo</a>
-      <a href="https://github.com/TWRAR/Engine/releases">Releases</a>
+      <a href="https://github.com/TWRAR/Engine"><i class="fa-brands fa-github" aria-hidden="true"></i> Engine repo</a>
+      <a href="https://github.com/TWRAR/Website"><i class="fa-brands fa-github" aria-hidden="true"></i> Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases"><i class="fa-solid fa-download" aria-hidden="true"></i> Releases</a>
     </div>
     <div class="footer-col">
       <h3 class="footer-heading">More</h3>
-      <a href="https://github.com/TWRAR/Engine/issues">Issues &amp; contact</a>
-      <a href="https://projects.stuxie.dev"><img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> A StuxieDev Project</a>
-      <a href="/legal">Boring Legal Stuff</a>
+      <a href="https://github.com/TWRAR/Engine/issues"><i class="fa-solid fa-comment" aria-hidden="true"></i> Issues &amp; contact</a>
+      <a href="/legal"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Boring Legal Stuff</a>
+      <a href="https://stuxie.dev">Written &amp; Maintained by <img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> StuxieDev</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="footer-note">
+        Only point TWRAR at sites and content you own or otherwise have
+        explicit authorization to automate.
+      </p>
+      <p class="footer-note"><a href="https://projects.stuxie.dev">A StuxieDev Project</a></p>
     </div>
   </div>
 </footer>
 
 <script src="../script.js"></script>
+<script src="../dev-config.js"></script>
+<script src="../versions.js"></script>
 </body>
 </html>

@@ -2,10 +2,14 @@
 """TWRAR Website — local dev server.
 
 Serves this folder the way GitHub Pages does. DEV_MODE is forced on by
-default: every .html response gets a fixed dev banner injected right after
-<body>, so it's obvious at a glance you're looking at a local build and not
-production. Pass --no-dev-mode to serve the files untouched, matching
-production exactly.
+default: it writes dev-config.js (gitignored, never deployed) so
+versions.js fetches Engine/Website content from the sibling checkouts next
+to this one (../Engine) instead of GitHub - so local edits to that repo's
+CHANGELOG.md/VERSION.md show up here without pushing first - and reveals
+the `#dev-banner` element every page already carries (hidden by default),
+same env-banner treatment as TIGHC/Stuxs.Tools. Pass --no-dev-mode to fetch
+from GitHub instead, matching production (the banner then stays hidden,
+since dev-config.js is never written).
 """
 import http.server
 import os
@@ -13,14 +17,11 @@ import socketserver
 import sys
 
 WEB_DIR = os.path.dirname(os.path.abspath(__file__))
-
-DEV_BANNER = (
-    b'<div style="position:sticky;top:0;z-index:9999;background:#dc2626;'
-    b'color:#fff;font:600 13px/1.4 system-ui,sans-serif;text-align:center;'
-    b'padding:6px 12px">DEV MODE - local build, not production - '
-    b'<a href="https://twrar.stuxie.dev" style="color:#fff;text-decoration:underline">'
-    b'twrar.stuxie.dev</a></div>'
-)
+PARENT_DIR = os.path.dirname(WEB_DIR)
+SIBLINGS = {
+    "engine": os.path.join(PARENT_DIR, "Engine"),
+    "website": WEB_DIR,
+}
 
 
 def parse_args(argv):
@@ -37,49 +38,68 @@ def parse_args(argv):
     return port, dev_mode
 
 
-def make_handler(dev_mode):
-    class DevHandler(http.server.SimpleHTTPRequestHandler):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, directory=WEB_DIR, **kwargs)
+def write_dev_config(dev_mode, port):
+    path = os.path.join(WEB_DIR, "dev-config.js")
+    if not dev_mode:
+        if os.path.exists(path):
+            os.remove(path)
+        return
+    lines = [
+        "// Written by dev-server.py at startup - gitignored, never deployed.",
+        "window.TWRAR_DEV = {",
+        "  repos: {",
+        "    engine: '/dev-sibling/engine',",
+        "    website: '/dev-sibling/website'",
+        "  },",
+        "  port: %d" % port,
+        "};",
+        "(function () {",
+        "  var banner = document.getElementById('dev-banner');",
+        "  var detail = document.getElementById('dev-banner-detail');",
+        "  if (detail) {",
+        "    detail.textContent = 'TWRAR Website running on :' + window.TWRAR_DEV.port +",
+        "      ' \\u2014 Engine content served from local sibling checkout, not GitHub.';",
+        "  }",
+        "  if (banner) banner.hidden = false;",
+        "})();",
+        "console.log('[TWRAR dev mode] Engine/Website content is loaded from local sibling checkouts, not GitHub.');",
+    ]
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
 
-        def do_GET(self):
-            path = self.translate_path(self.path)
-            if os.path.isdir(path):
-                path = os.path.join(path, "index.html")
-            if dev_mode and os.path.isfile(path) and path.endswith(".html"):
-                with open(path, "rb") as f:
-                    body = f.read()
-                body_tag = body.find(b"<body")
-                if body_tag != -1:
-                    tag_end = body.find(b">", body_tag)
-                    if tag_end != -1:
-                        insert_at = tag_end + 1
-                        body = body[:insert_at] + DEV_BANNER + body[insert_at:]
-                self.send_response(200)
-                self.send_header("Content-Type", "text/html; charset=utf-8")
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
-                return
-            return super().do_GET()
 
-        def log_message(self, fmt, *args):
-            sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
+class DevHandler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=WEB_DIR, **kwargs)
 
-    return DevHandler
+    def translate_path(self, path):
+        path = path.split("?", 1)[0].split("#", 1)[0]
+        for key, real_dir in SIBLINGS.items():
+            prefix = "/dev-sibling/" + key
+            if path == prefix or path.startswith(prefix + "/"):
+                rest = path[len(prefix):].lstrip("/")
+                return os.path.join(real_dir, *rest.split("/")) if rest else real_dir
+        return super().translate_path(path)
+
+    def log_message(self, fmt, *args):
+        sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
 
 
 def main():
     port, dev_mode = parse_args(sys.argv[1:])
+    write_dev_config(dev_mode, port)
 
     print("TWRAR Website running at http://127.0.0.1:%d" % port)
     if dev_mode:
-        print("DEV_MODE forced on for this run - every page gets a dev banner.")
-        print("Pass --no-dev-mode to serve pages untouched, matching production.")
+        print("DEV_MODE forced on for this run - Engine/Website content is served")
+        print("from %s instead of GitHub." % PARENT_DIR)
+        print("Pass --no-dev-mode to fetch from GitHub instead, matching production.")
+        if not os.path.isdir(SIBLINGS["engine"]):
+            print("Note: %s not found next to Website/ - engine content will 404 locally." % SIBLINGS["engine"])
     else:
-        print("DEV_MODE off for this run - pages are served as-is, same as production.")
+        print("DEV_MODE off for this run - Engine/Website content is fetched live from GitHub, same as production.")
 
-    with socketserver.TCPServer(("127.0.0.1", port), make_handler(dev_mode)) as httpd:
+    with socketserver.TCPServer(("127.0.0.1", port), DevHandler) as httpd:
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

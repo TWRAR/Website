@@ -24,24 +24,30 @@
 <meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/brands.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="env-banner env-banner-dev" id="dev-banner" hidden><span><strong class="env-banner-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Development Mode</strong><span class="env-banner-detail" id="dev-banner-detail"></span></span></div>
+
 <header class="site-header">
   <div class="container header-inner">
     <a href="#top" class="brand">
-      <img src="assets/icon.png" alt="" class="brand-icon">
-      <span>TWRAR</span>
+      <img src="assets/logo.png" alt="TWRAR" class="brand-logo">
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="#features">Features</a>
       <a href="#how-it-works">How it works</a>
-      <a href="https://github.com/TWRAR/Engine" class="nav-gh">GitHub</a>
+      <a href="#get-started">Get started</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
     </nav>
     <div class="header-controls">
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
-        <span class="icon-sun">&#9728;</span><span class="icon-moon">&#9789;</span>
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
       <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -63,31 +69,36 @@
       </p>
       <div class="hero-actions">
         <a href="https://github.com/TWRAR/Engine" class="btn btn-accent">View on GitHub</a>
-        <a href="https://github.com/TWRAR/Engine/releases" class="btn btn-ghost">Download latest release</a>
+        <a href="#get-started" class="btn btn-ghost">Get started</a>
       </div>
+      <p class="hero-meta">
+        <span class="badge" data-version="engine">v2.0.0</span>
+        <span class="badge">Windows</span>
+        <span class="badge">Open source</span>
+      </p>
     </div>
   </section>
 
   <section class="section" id="features">
     <div class="container">
       <h2 class="section-title">Features</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
+      <div class="grid grid-2">
+        <div class="card">
           <h3>Record</h3>
           <p>Click, type, and navigate on a real page - every interaction
           becomes a step in the list, no selectors to hand-write.</p>
         </div>
-        <div class="feature-card">
+        <div class="card">
           <h3>Replay</h3>
           <p>Save the recording as a YAML profile and run it again any
           time - from the GUI or a headless CLI, on any machine.</p>
         </div>
-        <div class="feature-card">
+        <div class="card">
           <h3>Macros &amp; hotkeys</h3>
           <p>Group steps into reusable macros, and fire them from global
           hotkeys - pause, resume, or re-run a check mid-session.</p>
         </div>
-        <div class="feature-card">
+        <div class="card">
           <h3>QA &amp; scraping</h3>
           <p>Built-in assertions for regression testing, plus scrape/evaluate
           steps and pass/fail HTML reports with failure screenshots.</p>
@@ -100,10 +111,52 @@
     <div class="container">
       <h2 class="section-title">How it works</h2>
       <ol class="steps">
-        <li><strong>Record</strong> — click through a page as normal; TWRAR turns it into a step list.</li>
-        <li><strong>Save</strong> — the steps, macros, and hotkeys become one launchable YAML profile.</li>
-        <li><strong>Replay</strong> — run the profile any time to check the page still behaves, or pull data from it.</li>
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Record</h3>
+            <p>Click, type, and navigate a real page as normal. TWRAR turns
+            every interaction into a step in the list.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Save</h3>
+            <p>The steps, macros, and hotkeys become one launchable YAML
+            profile — hand-editable, and safe to commit alongside your app.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Replay</h3>
+            <p>Run the profile any time — from the GUI or a headless CLI —
+            to check the page still behaves, or pull data from it.</p>
+          </div>
+        </li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section" id="get-started">
+    <div class="container">
+      <h2 class="section-title">Get started</h2>
+      <p class="section-lede">Clone and run:</p>
+      <pre class="code-block"><code>git clone https://github.com/TWRAR/Engine.git
+cd Engine
+pip install -r requirements.txt
+python gui_main.py</code></pre>
+      <p class="section-note">
+        Prefer not to install Python? Grab a standalone
+        <code>TWRAR.exe</code> from the
+        <a href="https://github.com/TWRAR/Engine/releases">Releases page</a>
+        instead — no install required.
+      </p>
+      <div class="hero-actions get-started-actions">
+        <a href="https://github.com/TWRAR/Engine" class="btn btn-accent">Repository &amp; full docs</a>
+        <a href="https://github.com/TWRAR/Engine/releases" class="btn btn-ghost">Releases</a>
+      </div>
     </div>
   </section>
 
@@ -117,18 +170,19 @@
         <span>TWRAR</span>
       </a>
       <p class="footer-tagline">The Website Recorder And Replayer</p>
+      <p class="footer-versions"><span data-version="engine" data-version-prefix="Engine ">Engine vX.Y.Z</span><span data-version="website" data-version-prefix="Website ">Website vX.Y.Z</span></p>
     </div>
     <div class="footer-col">
       <h3 class="footer-heading">Project</h3>
-      <a href="https://github.com/TWRAR/Engine">Engine repo</a>
-      <a href="https://github.com/TWRAR/Website">Website repo</a>
-      <a href="https://github.com/TWRAR/Engine/releases">Releases</a>
+      <a href="https://github.com/TWRAR/Engine"><i class="fa-brands fa-github" aria-hidden="true"></i> Engine repo</a>
+      <a href="https://github.com/TWRAR/Website"><i class="fa-brands fa-github" aria-hidden="true"></i> Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases"><i class="fa-solid fa-download" aria-hidden="true"></i> Releases</a>
     </div>
     <div class="footer-col">
       <h3 class="footer-heading">More</h3>
-      <a href="https://github.com/TWRAR/Engine/issues">Issues &amp; contact</a>
-      <a href="https://projects.stuxie.dev"><img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> A StuxieDev Project</a>
-      <a href="/legal">Boring Legal Stuff</a>
+      <a href="https://github.com/TWRAR/Engine/issues"><i class="fa-solid fa-comment" aria-hidden="true"></i> Issues &amp; contact</a>
+      <a href="/legal"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Boring Legal Stuff</a>
+      <a href="https://stuxie.dev">Written &amp; Maintained by <img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> StuxieDev</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -137,10 +191,13 @@
         Only point TWRAR at sites and content you own or otherwise have
         explicit authorization to automate.
       </p>
+      <p class="footer-note"><a href="https://projects.stuxie.dev">A StuxieDev Project</a></p>
     </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
+<script src="dev-config.js"></script>
+<script src="versions.js"></script>
 </body>
 </html>
