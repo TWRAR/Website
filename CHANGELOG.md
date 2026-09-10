@@ -4,6 +4,12 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.1.1] - 2026-09-10
+
+### Changed
+- Synced the updated wordmark logo (`assets/logo.png`) from Engine: bold
+  tagline in the same red as the icon/acronym.
+
 ## [1.1.0] - 2026-09-10
 
 ### Added
