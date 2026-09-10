@@ -9,15 +9,25 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms and Ethics — TWRAR</title>
-<meta name="description" content="The rules for using this site, and using TWRAR responsibly.">
-<link rel="canonical" href="https://twrar.stuxie.dev/legal/terms">
-<link rel="icon" type="image/png" href="../assets/icon.png">
-<link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="../assets/fontawesome/css/solid.min.css">
-<link rel="stylesheet" href="../assets/fontawesome/css/brands.min.css">
-<link rel="stylesheet" href="../style.css">
+<title>Changelogs — TWRAR</title>
+<meta name="description" content="Full version history for TWRAR Engine and TWRAR Website.">
+<link rel="canonical" href="https://twrar.stuxie.dev/changelogs">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Changelogs — TWRAR">
+<meta property="og:description" content="Full version history for TWRAR Engine and TWRAR Website.">
+<meta property="og:url" content="https://twrar.stuxie.dev/changelogs">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Changelogs — TWRAR">
+<meta name="twitter:description" content="Full version history for TWRAR Engine and TWRAR Website.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/brands.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -26,13 +36,13 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="brand">
-      <img src="../assets/logo.png" alt="TWRAR" class="brand-logo">
+      <img src="assets/logo.png" alt="TWRAR" class="brand-logo">
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
-      <a href="/changelogs">Changelogs</a>
+      <a href="/changelogs" class="active">Changelogs</a>
       <a href="/releases">Releases</a>
       <a href="/#get-started">Get started</a>
       <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
@@ -50,48 +60,41 @@
 </header>
 
 <main id="top">
-  <section class="hero legal-hero">
+
+  <section class="hero profiles-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Terms and Ethics</h1>
-      <p class="hero-sub">The rules for using this site, and using TWRAR responsibly.</p>
+      <h1 class="page-title">Changelogs</h1>
+      <p class="hero-sub">
+        Version history for both TWRAR repositories, fetched live from GitHub.
+      </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
-      <div class="legal-prose">
-        <p class="legal-meta">Last updated: 2026-09-10</p>
 
-<h2>Using this site</h2>
-      <p>This site is provided as-is, for information about TWRAR. Don't
-      attempt to disrupt it, scrape it abusively, or use it to distribute
-      malware.</p>
-
-      <h2>Using TWRAR</h2>
-      <p>TWRAR drives a real browser to click, fill, and scrape pages on your
-      behalf, based on a config you write or record. <strong>Only point it
-      at sites and content you own or otherwise have explicit authorization
-      to automate.</strong> Do not use it against third-party sites without
-      permission - that's on you, not on us.</p>
-      <p>TWRAR's Engine is licensed under the
-      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>.
-      It's provided without warranty of any kind, to the extent permitted by
-      that license.</p>
-
-      <h2>Changes</h2>
-      <p>These terms may be updated as the project evolves; the "Last
-      updated" date above reflects the latest revision.</p>
+      <div class="cl-tabs" role="tablist">
+        <button type="button" class="cl-tab active" data-repo="engine" role="tab">Engine<span class="tab-ver" data-version-inline="engine"></span></button>
+        <button type="button" class="cl-tab" data-repo="website" role="tab">Website<span class="tab-ver" data-version-inline="website"></span></button>
       </div>
+
+      <div id="cl-engine" class="cl-panel active">
+        <p class="cl-loading">Loading&hellip;</p>
+      </div>
+      <div id="cl-website" class="cl-panel">
+        <p class="cl-loading">Loading&hellip;</p>
+      </div>
+
     </div>
   </section>
+
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
       <a href="/" class="footer-brand-link">
-        <img src="../assets/icon.png" alt="" class="footer-icon">
+        <img src="assets/icon.png" alt="" class="footer-icon">
         <span>TWRAR</span>
       </a>
       <p class="footer-tagline">The Website Recorder And Replayer</p>
@@ -122,8 +125,9 @@
   </div>
 </footer>
 
-<script src="../script.js"></script>
-<script src="../dev-config.js"></script>
-<script src="../versions.js"></script>
+<script src="script.js"></script>
+<script src="dev-config.js"></script>
+<script src="versions.js"></script>
+<script src="changelogs.js"></script>
 </body>
 </html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function () {
+  try {
+    var t = localStorage.getItem("twrar-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engine — TWRAR</title>
+<meta name="description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI or CLI.">
+<link rel="canonical" href="https://twrar.stuxie.dev/engine">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Engine — TWRAR">
+<meta property="og:description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI or CLI.">
+<meta property="og:url" content="https://twrar.stuxie.dev/engine">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Engine — TWRAR">
+<meta name="twitter:description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI or CLI.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/brands.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="env-banner env-banner-dev" id="dev-banner" hidden><span><strong class="env-banner-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Development Mode</strong><span class="env-banner-detail" id="dev-banner-detail"></span></span></div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <img src="assets/logo.png" alt="TWRAR" class="brand-logo">
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="/#features">Features</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="/engine" class="active">Engine</a>
+      <a href="/changelogs">Changelogs</a>
+      <a href="/releases">Releases</a>
+      <a href="/#get-started">Get started</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+    </nav>
+    <div class="header-controls">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero profiles-hero">
+    <div class="container hero-inner">
+      <h1 class="page-title">Using the engine</h1>
+      <p class="hero-meta">
+        <span class="badge" data-version="engine" data-version-prefix="Engine ">Engine v2.0.2</span>
+        <span class="badge">Windows</span>
+      </p>
+      <p class="hero-sub">
+        Everything you need to install TWRAR, record a page, save it as a
+        profile, and replay it whenever you need to.
+      </p>
+    </div>
+  </section>
+
+  <!-- INSTALLATION -->
+  <section id="installation" class="section">
+    <div class="container">
+      <h2>Installation</h2>
+      <p>TWRAR requires <strong>Python 3.10+</strong>.</p>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Clone the repo</h3>
+            <pre><code>git clone https://github.com/TWRAR/Engine.git
+cd Engine</code></pre>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Install dependencies</h3>
+            <pre><code>pip install -r requirements.txt
+playwright install chromium</code></pre>
+            <p class="section-note"><code>playwright install chromium</code>
+            is only needed if you don't set <code>browser.executable_path</code>
+            and leave the default browser detection to launch Playwright's
+            own Chromium instead of your machine's installed browser.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Launch</h3>
+            <pre><code>python gui_main.py</code></pre>
+            <p>Prefer not to install Python at all? Grab a standalone
+            executable instead from the <a href="/releases">Releases page</a>.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- GUI -->
+  <section id="gui" class="section section-alt">
+    <div class="container">
+      <h2>The GUI</h2>
+      <p class="section-lede">
+        <code>python gui_main.py</code> opens the recorder/editor window.
+        Fill in a Start URL and browser, then work through recording,
+        editing, and playing back a profile.
+      </p>
+      <div class="grid grid-2">
+
+        <div class="card">
+          <h3>Record</h3>
+          <p>Fill in <strong>Start URL</strong> and <strong>Browser</strong>,
+          click <strong>Start Browser</strong>, then <strong>● Record</strong>.
+          Click, type, and navigate the real page as normal — every
+          interaction appears as a step in the list on the left. Click
+          <strong>● Record</strong> again to stop.</p>
+        </div>
+
+        <div class="card">
+          <h3>Edit steps</h3>
+          <p>Reorder, edit (selector/value/timeout), or delete any step.
+          <strong>Add Action</strong> inserts a step type the recorder can't
+          capture by hand — <code>assert</code>, <code>sleep</code>,
+          <code>scrape</code>, <code>evaluate</code>, <code>click_coords</code>,
+          and more. Select a run of steps and <strong>Group into Macro</strong>
+          to make them reusable.</p>
+        </div>
+
+        <div class="card">
+          <h3>Save &amp; play</h3>
+          <p><strong>Save Config</strong> writes everything to a YAML profile
+          compatible with the CLI. <strong>▶ Play</strong> replays the
+          current steps right there in the GUI, with
+          <strong>⏸ Pause</strong>/<strong>⏹ Stop</strong> controlling a run
+          in progress.</p>
+        </div>
+
+        <div class="card">
+          <h3>Reports</h3>
+          <p>Set a <strong>Report dir</strong> on the config bar to get a
+          pass/fail/continued <code>report.html</code>/<code>report.json</code>
+          after each run, with per-step timings and a screenshot
+          auto-captured for any step that failed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CLI -->
+  <section id="cli" class="section">
+    <div class="container">
+      <h2>The CLI</h2>
+      <p class="section-lede">
+        For existing profiles, no GUI required — good for CI or scheduled
+        regression runs.
+      </p>
+      <pre class="code-block"><code>python main.py --config configs/example.yaml
+python main.py --config configs/example.yaml --validate</code></pre>
+      <p class="section-note">
+        <code>--validate</code> checks every step's action name and required
+        fields (and every <code>run_macro</code>/hotkey reference) against
+        the action registry and exits — no browser is launched. The same
+        check also runs automatically before a normal run, so a typo fails
+        in milliseconds instead of mid-run.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONFIG SHAPE -->
+  <section id="config" class="section section-alt">
+    <div class="container">
+      <h2>Config shape</h2>
+      <p class="section-lede">
+        A profile is one YAML file: a list of steps, optional named macros,
+        and optional global hotkeys.
+      </p>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Steps &amp; macros</h3>
+          <p><code>steps</code> is the sequence that runs when the script
+          starts. Any step can set <code>retry: {times, delay_ms}</code> or
+          <code>continue_on_error: true</code>. <code>macros</code> are
+          named step lists invoked with
+          <code>{action: run_macro, name: &lt;key&gt;}</code>.</p>
+        </div>
+        <div class="card">
+          <h3>Hotkeys</h3>
+          <p>Global control hotkeys (<code>&lt;key combo&gt;: pause | quit |
+          [&lt;steps&gt;]</code>) work system-wide via the
+          <code>keyboard</code> package, even while the browser has focus —
+          CLI only, since the GUI uses its own Play/Pause/Stop buttons.</p>
+        </div>
+        <div class="card">
+          <h3>Output</h3>
+          <p><code>output.results_file</code> dumps <code>scrape</code>/
+          <code>evaluate</code> values as JSON.
+          <code>output.report_dir</code> writes the pass/fail HTML/JSON
+          report described above.</p>
+        </div>
+      </div>
+      <p class="section-note">
+        See <a href="https://github.com/TWRAR/Engine/blob/main/twrar/actions.py" target="_blank" rel="noopener">twrar/actions.py</a>
+        for the full, authoritative action registry, or
+        <a href="https://github.com/TWRAR/Engine#config-shape" target="_blank" rel="noopener">the README</a>
+        for the complete config reference.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-brand-link">
+        <img src="assets/icon.png" alt="" class="footer-icon">
+        <span>TWRAR</span>
+      </a>
+      <p class="footer-tagline">The Website Recorder And Replayer</p>
+      <p class="footer-versions"><span data-version="engine" data-version-prefix="Engine ">Engine vX.Y.Z</span><span data-version="website" data-version-prefix="Website ">Website vX.Y.Z</span></p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Project</h3>
+      <a href="https://github.com/TWRAR/Engine"><i class="fa-brands fa-github" aria-hidden="true"></i> Engine repo</a>
+      <a href="https://github.com/TWRAR/Website"><i class="fa-brands fa-github" aria-hidden="true"></i> Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases"><i class="fa-solid fa-download" aria-hidden="true"></i> Releases</a>
+      <a href="/changelogs"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Changelogs</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">More</h3>
+      <a href="https://github.com/TWRAR/Engine/issues"><i class="fa-solid fa-comment" aria-hidden="true"></i> Issues &amp; contact</a>
+      <a href="/legal"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Boring Legal Stuff</a>
+      <a href="https://stuxie.dev">Written &amp; Maintained by <img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> StuxieDev</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="footer-note">
+        Only point TWRAR at sites and content you own or otherwise have
+        explicit authorization to automate.
+      </p>
+      <p class="footer-note"><a href="https://projects.stuxie.dev">A StuxieDev Project</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="dev-config.js"></script>
+<script src="versions.js"></script>
+</body>
+</html>

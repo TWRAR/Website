@@ -9,15 +9,25 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms and Ethics — TWRAR</title>
-<meta name="description" content="The rules for using this site, and using TWRAR responsibly.">
-<link rel="canonical" href="https://twrar.stuxie.dev/legal/terms">
-<link rel="icon" type="image/png" href="../assets/icon.png">
-<link rel="shortcut icon" href="../assets/favicon.ico">
-<link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="../assets/fontawesome/css/solid.min.css">
-<link rel="stylesheet" href="../assets/fontawesome/css/brands.min.css">
-<link rel="stylesheet" href="../style.css">
+<title>Releases — TWRAR</title>
+<meta name="description" content="Every TWRAR Engine release, with standalone Windows executables, fetched live from GitHub.">
+<link rel="canonical" href="https://twrar.stuxie.dev/releases">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Releases — TWRAR">
+<meta property="og:description" content="Every TWRAR Engine release, with standalone Windows executables, fetched live from GitHub.">
+<meta property="og:url" content="https://twrar.stuxie.dev/releases">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Releases — TWRAR">
+<meta name="twitter:description" content="Every TWRAR Engine release, with standalone Windows executables, fetched live from GitHub.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="assets/fontawesome/css/brands.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -26,14 +36,14 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="brand">
-      <img src="../assets/logo.png" alt="TWRAR" class="brand-logo">
+      <img src="assets/logo.png" alt="TWRAR" class="brand-logo">
     </a>
     <nav class="site-nav" id="site-nav">
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
       <a href="/changelogs">Changelogs</a>
-      <a href="/releases">Releases</a>
+      <a href="/releases" class="active">Releases</a>
       <a href="/#get-started">Get started</a>
       <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
     </nav>
@@ -50,48 +60,40 @@
 </header>
 
 <main id="top">
-  <section class="hero legal-hero">
+
+  <section class="hero profiles-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Terms and Ethics</h1>
-      <p class="hero-sub">The rules for using this site, and using TWRAR responsibly.</p>
+      <h1 class="page-title">Releases</h1>
+      <p class="hero-meta">
+        <span class="badge" data-version="engine" data-version-prefix="Engine ">Engine v2.0.2</span>
+        <span class="badge">Windows</span>
+      </p>
+      <p class="hero-sub">
+        Standalone executables — no Python install needed. Every release
+        below is fetched live from
+        <a href="https://github.com/TWRAR/Engine/releases" target="_blank" rel="noopener">github.com/TWRAR/Engine/releases</a>.
+      </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
-      <div class="legal-prose">
-        <p class="legal-meta">Last updated: 2026-09-10</p>
 
-<h2>Using this site</h2>
-      <p>This site is provided as-is, for information about TWRAR. Don't
-      attempt to disrupt it, scrape it abusively, or use it to distribute
-      malware.</p>
+      <div id="releases-status" class="release-status">Loading releases from
+        <a href="https://github.com/TWRAR/Engine/releases" target="_blank" rel="noopener">github.com/TWRAR/Engine</a>&hellip;</div>
 
-      <h2>Using TWRAR</h2>
-      <p>TWRAR drives a real browser to click, fill, and scrape pages on your
-      behalf, based on a config you write or record. <strong>Only point it
-      at sites and content you own or otherwise have explicit authorization
-      to automate.</strong> Do not use it against third-party sites without
-      permission - that's on you, not on us.</p>
-      <p>TWRAR's Engine is licensed under the
-      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>.
-      It's provided without warranty of any kind, to the extent permitted by
-      that license.</p>
+      <div id="releases-list" class="release-list"></div>
 
-      <h2>Changes</h2>
-      <p>These terms may be updated as the project evolves; the "Last
-      updated" date above reflects the latest revision.</p>
-      </div>
     </div>
   </section>
+
 </main>
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
       <a href="/" class="footer-brand-link">
-        <img src="../assets/icon.png" alt="" class="footer-icon">
+        <img src="assets/icon.png" alt="" class="footer-icon">
         <span>TWRAR</span>
       </a>
       <p class="footer-tagline">The Website Recorder And Replayer</p>
@@ -122,8 +124,9 @@
   </div>
 </footer>
 
-<script src="../script.js"></script>
-<script src="../dev-config.js"></script>
-<script src="../versions.js"></script>
+<script src="script.js"></script>
+<script src="dev-config.js"></script>
+<script src="versions.js"></script>
+<script src="releases.js"></script>
 </body>
 </html>

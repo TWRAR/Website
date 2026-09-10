@@ -31,6 +31,12 @@
           el.textContent = versionText(el.dataset.versionPrefix, ver);
         });
 
+        // Inline version spans inside tab buttons (changelogs page)
+        document.querySelectorAll("[data-version-inline]").forEach(function (el) {
+          var ver = map[el.dataset.versionInline];
+          if (ver) el.textContent = " v" + ver;
+        });
+
         document.dispatchEvent(new CustomEvent("twrar-versions", { detail: map }));
       });
   }
