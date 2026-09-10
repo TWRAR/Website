@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function () {
+  try {
+    var t = localStorage.getItem("twrar-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclaimer — TWRAR</title>
+<meta name="description" content="Copyright, accuracy, accessibility and security for TWRAR and this website.">
+<link rel="canonical" href="https://twrar.stuxie.dev/legal/disclaimer">
+<link rel="icon" type="image/png" href="../assets/icon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <img src="../assets/icon.png" alt="" class="brand-icon">
+      <span>TWRAR</span>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="/#features">Features</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh">GitHub</a>
+    </nav>
+    <div class="header-controls">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <span class="icon-sun">&#9728;</span><span class="icon-moon">&#9789;</span>
+      </button>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="section legal-doc">
+    <div class="container">
+      <p class="breadcrumb"><a href="/legal">&larr; Boring Legal Stuff</a></p>
+      <h1 class="page-title">Disclaimer</h1>
+      <p class="legal-updated">Last updated: 2026-09-10</p>
+
+      <h2>No warranty</h2>
+      <p>TWRAR's Engine is open source under the
+      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>
+      and is provided "as is", without warranty of any kind, express or
+      implied, to the extent permitted by that license. This site is
+      provided on the same basis.</p>
+
+      <h2>Your responsibility</h2>
+      <p>TWRAR drives a real browser on your behalf. You are responsible for
+      only pointing it at sites and content you own or otherwise have
+      explicit authorization to automate, and for reviewing any config
+      before running it - especially one you didn't write yourself.</p>
+
+      <h2>Accuracy</h2>
+      <p>Documentation and screenshots on this site are kept up to date on a
+      best-effort basis but may lag behind the latest release. The
+      <a href="https://github.com/TWRAR/Engine/blob/main/CHANGELOG.md">CHANGELOG</a>
+      is the authoritative record of what changed and when.</p>
+
+      <h2>Accessibility</h2>
+      <p>This site aims for reasonable accessibility (semantic HTML, visible
+      focus states, no motion-dependent content). If something doesn't work
+      with your assistive technology, please
+      <a href="mailto:legal@stuxie.dev">let us know</a>.</p>
+
+      <h2>Security</h2>
+      <p>Found a security issue in the Engine or this site? Please report it
+      privately to <a href="mailto:legal@stuxie.dev">legal@stuxie.dev</a>
+      rather than opening a public issue, so it can be fixed before it's
+      disclosed.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-brand-link">
+        <img src="../assets/icon.png" alt="" class="footer-icon">
+        <span>TWRAR</span>
+      </a>
+      <p class="footer-tagline">The Website Recorder And Replayer</p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Project</h3>
+      <a href="https://github.com/TWRAR/Engine">Engine repo</a>
+      <a href="https://github.com/TWRAR/Website">Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases">Releases</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">More</h3>
+      <a href="https://github.com/TWRAR/Engine/issues">Issues &amp; contact</a>
+      <a href="https://projects.stuxie.dev"><img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> A StuxieDev Project</a>
+      <a href="/legal">Boring Legal Stuff</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function () {
+  try {
+    var t = localStorage.getItem("twrar-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TWRAR — The Website Recorder And Replayer</title>
+<meta name="description" content="TWRAR records your clicks, form input, and navigation into a launchable step profile, then replays it any time to QA/regression-test or scrape a site. Open source.">
+<link rel="canonical" href="https://twrar.stuxie.dev/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="TWRAR — The Website Recorder And Replayer">
+<meta property="og:description" content="TWRAR records your clicks, form input, and navigation into a launchable step profile, then replays it any time to QA/regression-test or scrape a site. Open source.">
+<meta property="og:url" content="https://twrar.stuxie.dev/">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TWRAR — The Website Recorder And Replayer">
+<meta name="twitter:description" content="TWRAR records your clicks, form input, and navigation into a launchable step profile, then replays it any time to QA/regression-test or scrape a site. Open source.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <img src="assets/icon.png" alt="" class="brand-icon">
+      <span>TWRAR</span>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh">GitHub</a>
+    </nav>
+    <div class="header-controls">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <span class="icon-sun">&#9728;</span><span class="icon-moon">&#9789;</span>
+      </button>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <img src="assets/logo.png" alt="TWRAR — The Website Recorder And Replayer" class="hero-logo">
+      <p class="hero-tagline">Record it once. Replay it forever.</p>
+      <p class="hero-sub">
+        A desktop GUI records your clicks, form input, and navigation on a
+        real page into a launchable step profile — save it as YAML, then
+        replay it any time to QA/regression-test or scrape a site you own.
+      </p>
+      <div class="hero-actions">
+        <a href="https://github.com/TWRAR/Engine" class="btn btn-accent">View on GitHub</a>
+        <a href="https://github.com/TWRAR/Engine/releases" class="btn btn-ghost">Download latest release</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title">Features</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Record</h3>
+          <p>Click, type, and navigate on a real page - every interaction
+          becomes a step in the list, no selectors to hand-write.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Replay</h3>
+          <p>Save the recording as a YAML profile and run it again any
+          time - from the GUI or a headless CLI, on any machine.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Macros &amp; hotkeys</h3>
+          <p>Group steps into reusable macros, and fire them from global
+          hotkeys - pause, resume, or re-run a check mid-session.</p>
+        </div>
+        <div class="feature-card">
+          <h3>QA &amp; scraping</h3>
+          <p>Built-in assertions for regression testing, plus scrape/evaluate
+          steps and pass/fail HTML reports with failure screenshots.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <ol class="steps">
+        <li><strong>Record</strong> — click through a page as normal; TWRAR turns it into a step list.</li>
+        <li><strong>Save</strong> — the steps, macros, and hotkeys become one launchable YAML profile.</li>
+        <li><strong>Replay</strong> — run the profile any time to check the page still behaves, or pull data from it.</li>
+      </ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#top" class="footer-brand-link">
+        <img src="assets/icon.png" alt="" class="footer-icon">
+        <span>TWRAR</span>
+      </a>
+      <p class="footer-tagline">The Website Recorder And Replayer</p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Project</h3>
+      <a href="https://github.com/TWRAR/Engine">Engine repo</a>
+      <a href="https://github.com/TWRAR/Website">Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases">Releases</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">More</h3>
+      <a href="https://github.com/TWRAR/Engine/issues">Issues &amp; contact</a>
+      <a href="https://projects.stuxie.dev"><img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> A StuxieDev Project</a>
+      <a href="/legal">Boring Legal Stuff</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="footer-note">
+        Only point TWRAR at sites and content you own or otherwise have
+        explicit authorization to automate.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

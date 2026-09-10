@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function () {
+  try {
+    var t = localStorage.getItem("twrar-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookies Policy — TWRAR</title>
+<meta name="description" content="localStorage only - no tracking cookies, ever.">
+<link rel="canonical" href="https://twrar.stuxie.dev/legal/cookies">
+<link rel="icon" type="image/png" href="../assets/icon.png">
+<link rel="shortcut icon" href="../assets/favicon.ico">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <img src="../assets/icon.png" alt="" class="brand-icon">
+      <span>TWRAR</span>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="/#features">Features</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh">GitHub</a>
+    </nav>
+    <div class="header-controls">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <span class="icon-sun">&#9728;</span><span class="icon-moon">&#9789;</span>
+      </button>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="section legal-doc">
+    <div class="container">
+      <p class="breadcrumb"><a href="/legal">&larr; Boring Legal Stuff</a></p>
+      <h1 class="page-title">Cookies Policy</h1>
+      <p class="legal-updated">Last updated: 2026-09-10</p>
+
+      <p>This site sets no cookies, and has no tracking or advertising
+      scripts of any kind.</p>
+
+      <h2>What it does use</h2>
+      <p>A single <code>localStorage</code> entry, <code>twrar-theme</code>,
+      remembering whether you last chose light or dark mode. It stays in
+      your browser, is never sent to a server, and isn't shared across
+      sites.</p>
+
+      <h2>The Engine (the desktop app)</h2>
+      <p>Not a browser cookie at all, but worth noting here: the desktop app
+      stores its own local settings (browser channel, disclaimer
+      acknowledgment, last config path) in a per-user app-data folder on
+      your machine. Nothing is sent anywhere.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-brand-link">
+        <img src="../assets/icon.png" alt="" class="footer-icon">
+        <span>TWRAR</span>
+      </a>
+      <p class="footer-tagline">The Website Recorder And Replayer</p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Project</h3>
+      <a href="https://github.com/TWRAR/Engine">Engine repo</a>
+      <a href="https://github.com/TWRAR/Website">Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases">Releases</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">More</h3>
+      <a href="https://github.com/TWRAR/Engine/issues">Issues &amp; contact</a>
+      <a href="https://projects.stuxie.dev"><img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> A StuxieDev Project</a>
+      <a href="/legal">Boring Legal Stuff</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
