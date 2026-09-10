@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" width="500" alt="TWRAR — The Website Recorder And Replayer">
+  <img src="assets/logo.png" width="300" alt="TWRAR — The Website Recorder And Replayer">
 </p>
 
 # TWRAR Website
@@ -50,4 +50,6 @@ into every page, so it's obvious you're not looking at production. Pass
 
 ---
 
-*A <img src="https://github.com/StuxieDev.png" height="14" alt="StuxieDev" valign="middle"> [StuxieDev](https://projects.stuxie.dev) Project.*
+*Written & Maintained by <img src="https://github.com/StuxieDev.png" height="14" alt="StuxieDev" valign="middle"> [StuxieDev](https://stuxie.dev).*
+
+*[A StuxieDev Project](https://projects.stuxie.dev)*
