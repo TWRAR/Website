@@ -10,17 +10,17 @@
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Engine — TWRAR</title>
-<meta name="description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI or CLI.">
+<meta name="description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI.">
 <link rel="canonical" href="https://twrar.stuxie.dev/engine">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TWRAR">
 <meta property="og:title" content="Engine — TWRAR">
-<meta property="og:description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI or CLI.">
+<meta property="og:description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI.">
 <meta property="og:url" content="https://twrar.stuxie.dev/engine">
 <meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Engine — TWRAR">
-<meta name="twitter:description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI or CLI.">
+<meta name="twitter:description" content="How to install and use TWRAR — record steps with the GUI, save them as a YAML profile, and replay them from the GUI.">
 <meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="shortcut icon" href="assets/favicon.ico">
@@ -66,7 +66,7 @@
       <h1 class="page-title">Using the engine</h1>
       <p class="hero-meta">
         <span class="badge" data-version="engine" data-version-prefix="Engine ">Engine v2.0.2</span>
-        <span class="badge">Windows</span>
+        <span class="badge">Windows &middot; macOS &middot; Linux</span>
       </p>
       <p class="hero-sub">
         Everything you need to install TWRAR, record a page, save it as a
@@ -146,11 +146,11 @@ playwright install chromium</code></pre>
 
         <div class="card">
           <h3>Save &amp; play</h3>
-          <p><strong>Save Config</strong> writes everything to a YAML profile
-          compatible with the CLI. <strong>▶ Play</strong> replays the
-          current steps right there in the GUI, with
-          <strong>⏸ Pause</strong>/<strong>⏹ Stop</strong> controlling a run
-          in progress.</p>
+          <p><strong>Save Config</strong> writes everything to a YAML
+          profile you can reopen with <strong>Load Config</strong>.
+          <strong>▶ Play</strong> replays the current steps right there in
+          the GUI, with <strong>⏸ Pause</strong>/<strong>⏹ Stop</strong>
+          controlling a run in progress.</p>
         </div>
 
         <div class="card">
@@ -165,35 +165,15 @@ playwright install chromium</code></pre>
     </div>
   </section>
 
-  <!-- CLI -->
-  <section id="cli" class="section">
-    <div class="container">
-      <h2>The CLI</h2>
-      <p class="section-lede">
-        For existing profiles, no GUI required — good for CI or scheduled
-        regression runs.
-      </p>
-      <pre class="code-block"><code>python main.py --config configs/example.yaml
-python main.py --config configs/example.yaml --validate</code></pre>
-      <p class="section-note">
-        <code>--validate</code> checks every step's action name and required
-        fields (and every <code>run_macro</code>/hotkey reference) against
-        the action registry and exits — no browser is launched. The same
-        check also runs automatically before a normal run, so a typo fails
-        in milliseconds instead of mid-run.
-      </p>
-    </div>
-  </section>
-
   <!-- CONFIG SHAPE -->
   <section id="config" class="section section-alt">
     <div class="container">
       <h2>Config shape</h2>
       <p class="section-lede">
-        A profile is one YAML file: a list of steps, optional named macros,
-        and optional global hotkeys.
+        A profile is one YAML file: a list of steps and optional named
+        macros.
       </p>
-      <div class="grid grid-3">
+      <div class="grid grid-2">
         <div class="card">
           <h3>Steps &amp; macros</h3>
           <p><code>steps</code> is the sequence that runs when the script
@@ -201,13 +181,6 @@ python main.py --config configs/example.yaml --validate</code></pre>
           <code>continue_on_error: true</code>. <code>macros</code> are
           named step lists invoked with
           <code>{action: run_macro, name: &lt;key&gt;}</code>.</p>
-        </div>
-        <div class="card">
-          <h3>Hotkeys</h3>
-          <p>Global control hotkeys (<code>&lt;key combo&gt;: pause | quit |
-          [&lt;steps&gt;]</code>) work system-wide via the
-          <code>keyboard</code> package, even while the browser has focus —
-          CLI only, since the GUI uses its own Play/Pause/Stop buttons.</p>
         </div>
         <div class="card">
           <h3>Output</h3>
@@ -218,7 +191,10 @@ python main.py --config configs/example.yaml --validate</code></pre>
         </div>
       </div>
       <p class="section-note">
-        See <a href="https://github.com/TWRAR/Engine/blob/main/twrar/actions.py" target="_blank" rel="noopener">twrar/actions.py</a>
+        Validation (unknown actions, missing required fields, dangling
+        <code>run_macro</code> references) runs automatically before every
+        Play, so a typo fails immediately instead of mid-run. See
+        <a href="https://github.com/TWRAR/Engine/blob/main/twrar/actions.py" target="_blank" rel="noopener">twrar/actions.py</a>
         for the full, authoritative action registry, or
         <a href="https://github.com/TWRAR/Engine#config-shape" target="_blank" rel="noopener">the README</a>
         for the complete config reference.

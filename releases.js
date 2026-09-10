@@ -2,10 +2,28 @@
   var REPO = "TWRAR/Engine";
   var API_URL = "https://api.github.com/repos/" + REPO + "/releases";
 
-  // Unlike TIGHC (multi-platform), Engine only ships two flat-named
-  // Windows assets - TWRAR.exe (GUI) and TWRARCLI.exe (CLI) - so there's
-  // no per-platform parsing to do, just a friendlier label per name.
-  var ASSET_LABELS = { "TWRAR.exe": "Windows (GUI)", "TWRARCLI.exe": "Windows (CLI)" };
+  var PLATFORM_LABELS = { windows: "Windows", macos: "macOS", linux: "Linux" };
+  var PLATFORM_ORDER = ["windows", "macos", "linux"];
+
+  // Matches build_exe.py's release-workflow naming: TWRAR-<platform>[.exe|.zip]
+  function parseAsset(name) {
+    var m = /^TWRAR-(windows|macos|linux)(?:\.(?:exe|zip))?$/.exec(name);
+    if (!m) return { platform: null };
+    return { platform: m[1] };
+  }
+
+  function assetLabel(name) {
+    var parsed = parseAsset(name);
+    if (!parsed.platform) return name;
+    return PLATFORM_LABELS[parsed.platform] || parsed.platform;
+  }
+
+  function compareAssets(a, b) {
+    var pa = parseAsset(a.name), pb = parseAsset(b.name);
+    var oa = pa.platform ? PLATFORM_ORDER.indexOf(pa.platform) : PLATFORM_ORDER.length;
+    var ob = pb.platform ? PLATFORM_ORDER.indexOf(pb.platform) : PLATFORM_ORDER.length;
+    return oa - ob;
+  }
 
   var statusEl = (typeof document !== "undefined") ? document.getElementById("releases-status") : null;
   var listEl = (typeof document !== "undefined") ? document.getElementById("releases-list") : null;
@@ -34,14 +52,6 @@
     return escaped.split(/\n{2,}/).map(function (para) {
       return "<p>" + para.replace(/\n/g, "<br>") + "</p>";
     }).join("");
-  }
-
-  function assetLabel(name) {
-    return ASSET_LABELS[name] || name;
-  }
-
-  function compareAssets(a, b) {
-    return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
   }
 
   function formatDate(iso) {

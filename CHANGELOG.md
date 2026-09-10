@@ -4,6 +4,32 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.3.0] - 2026-09-10
+
+### Changed
+- Removed all CLI/hotkeys copy from `index.html` and `engine.html`,
+  following Engine v3.0.0's discontinuation of the CLI (GUI-only from
+  here on). The Macros feature card/section stays; only the CLI/hotkeys
+  half of it is gone.
+- Hero/badge copy now says "Windows · macOS · Linux" everywhere,
+  matching Engine's new cross-platform release builds.
+- `releases.js`'s asset parser now matches the real release-workflow
+  naming (`TWRAR-<platform>[.exe|.zip]`) instead of flat Windows-only
+  names.
+- Background now carries a subtle warm red tint in both themes, and "A
+  StuxieDev Project" (footer bottom bar) is muted instead of
+  accent-colored, underlining only on hover.
+
+### Added
+- Releases page now carries a disclaimer that the CLI was discontinued
+  in Engine v3.0.0 and is no longer built or supported.
+
+### Fixed
+- The dev-mode banner was showing unconditionally, including in
+  production: `.env-banner` was missing a `[hidden] { display: none; }`
+  override, so its own `display: flex` rule beat the browser's native
+  `hidden` attribute.
+
 ## [1.2.0] - 2026-09-10
 
 ### Added
