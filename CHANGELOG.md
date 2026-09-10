@@ -4,6 +4,22 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.4.0] - 2026-09-10
+
+### Added
+- **Guides section** (`/guides` hub + `/guides/windows`,
+  `/guides/macos`, `/guides/linux`): platform-specific setup notes -
+  installation, browser detection behavior, and troubleshooting per OS.
+  Linked from the header nav and every page's footer.
+
+### Fixed
+- `dev-server.py`'s pretty-URL logic 301-redirected `/legal` and
+  `/guides` into their same-named subdirectory instead of serving
+  `legal.html`/`guides.html`, since a same-named directory existing took
+  priority in the fallback check. Now prefers the sibling `.html` file
+  whenever the request doesn't end in `/`, matching how GitHub Pages
+  actually resolves this in production.
+
 ## [1.3.0] - 2026-09-10
 
 ### Changed

@@ -9,9 +9,19 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disclaimer — TWRAR</title>
-<meta name="description" content="Copyright, accuracy, accessibility and security for TWRAR and this website.">
-<link rel="canonical" href="https://twrar.stuxie.dev/legal/disclaimer">
+<title>Windows Guide — TWRAR</title>
+<meta name="description" content="Installing and running TWRAR on Windows: standalone .exe, default-browser detection, and running from source.">
+<link rel="canonical" href="https://twrar.stuxie.dev/guides/windows">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Windows Guide — TWRAR">
+<meta property="og:description" content="Installing and running TWRAR on Windows: standalone .exe, default-browser detection, and running from source.">
+<meta property="og:url" content="https://twrar.stuxie.dev/guides/windows">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Windows Guide — TWRAR">
+<meta name="twitter:description" content="Installing and running TWRAR on Windows: standalone .exe, default-browser detection, and running from source.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
 <link rel="icon" type="image/png" href="../assets/icon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
@@ -32,7 +42,7 @@
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
-      <a href="/guides">Guides</a>
+      <a href="/guides" class="active">Guides</a>
       <a href="/changelogs">Changelogs</a>
       <a href="/releases">Releases</a>
       <a href="/#get-started">Get started</a>
@@ -53,47 +63,58 @@
 <main id="top">
   <section class="hero legal-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Disclaimer</h1>
-      <p class="hero-sub">Copyright, accuracy, accessibility and security for TWRAR and this website.</p>
+      <h1 class="page-title"><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows Guide</h1>
+      <p class="hero-sub">The primary platform - everything works out of the box.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
+      <a href="/guides" class="legal-back">&larr; All guides</a>
       <div class="legal-prose">
-        <p class="legal-meta">Last updated: 2026-09-10</p>
 
-<h2>No warranty</h2>
-      <p>TWRAR's Engine is open source under the
-      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>
-      and is provided "as is", without warranty of any kind, express or
-      implied, to the extent permitted by that license. This site is
-      provided on the same basis.</p>
+        <h2>Standalone executable (recommended)</h2>
+        <p>Grab <code>TWRAR-windows.exe</code> from the
+        <a href="/releases">Releases page</a> - no Python install needed.
+        Double-click it to launch the GUI directly.</p>
 
-      <h2>Your responsibility</h2>
-      <p>TWRAR drives a real browser on your behalf. You are responsible for
-      only pointing it at sites and content you own or otherwise have
-      explicit authorization to automate, and for reviewing any config
-      before running it - especially one you didn't write yourself.</p>
+        <h2>Running from source</h2>
+        <pre class="code-block"><code>git clone https://github.com/TWRAR/Engine.git
+cd Engine
+pip install -r requirements.txt
+playwright install chromium
+python gui_main.py</code></pre>
+        <p><code>playwright install chromium</code> is only needed if you
+        don't set <code>browser.executable_path</code> and leave the
+        default browser detection to fall through to Playwright's own
+        bundled Chromium instead of your machine's installed browser.</p>
 
-      <h2>Accuracy</h2>
-      <p>Documentation and screenshots on this site are kept up to date on a
-      best-effort basis but may lag behind the latest release. The
-      <a href="https://github.com/TWRAR/Engine/blob/main/CHANGELOG.md">CHANGELOG</a>
-      is the authoritative record of what changed and when.</p>
+        <h2>Default-browser detection</h2>
+        <p><code>browser.channel: default</code> reads your Windows
+        account's registered default browser (the same setting under
+        <strong>Settings &rarr; Apps &rarr; Default apps</strong>) and
+        launches whichever of Brave, Chrome, Edge, or Firefox is set
+        there. Set <code>channel</code> to a specific one of those to
+        force it instead, or give <code>browser.executable_path</code>
+        directly to bypass detection entirely.</p>
 
-      <h2>Accessibility</h2>
-      <p>This site aims for reasonable accessibility (semantic HTML, visible
-      focus states, no motion-dependent content). If something doesn't work
-      with your assistive technology, please
-      <a href="mailto:legal@stuxie.dev">let us know</a>.</p>
+        <h2>Global hotkey permissions</h2>
+        <p>TWRAR no longer uses global system-wide hotkeys (the feature
+        was CLI-only, and the CLI is discontinued as of Engine v3.0.0) -
+        no elevated/Administrator permissions are needed to run it.</p>
 
-      <h2>Security</h2>
-      <p>Found a security issue in the Engine or this site? Please report it
-      privately to <a href="mailto:legal@stuxie.dev">legal@stuxie.dev</a>
-      rather than opening a public issue, so it can be fixed before it's
-      disclosed.</p>
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li><strong>SmartScreen warning on first run</strong> - the
+          executable isn't code-signed. Click <strong>More info</strong>,
+          then <strong>Run anyway</strong>.</li>
+          <li><strong>Antivirus flags the .exe</strong> - a false positive
+          common with PyInstaller-built executables. Verify you downloaded
+          it from the official
+          <a href="https://github.com/TWRAR/Engine/releases">Releases page</a>,
+          then add an exclusion if needed.</li>
+        </ul>
+
       </div>
     </div>
   </section>

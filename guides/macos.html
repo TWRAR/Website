@@ -9,9 +9,19 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disclaimer — TWRAR</title>
-<meta name="description" content="Copyright, accuracy, accessibility and security for TWRAR and this website.">
-<link rel="canonical" href="https://twrar.stuxie.dev/legal/disclaimer">
+<title>macOS Guide — TWRAR</title>
+<meta name="description" content="Installing and running TWRAR on macOS: the .app bundle, Gatekeeper, and browser channel setup.">
+<link rel="canonical" href="https://twrar.stuxie.dev/guides/macos">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="macOS Guide — TWRAR">
+<meta property="og:description" content="Installing and running TWRAR on macOS: the .app bundle, Gatekeeper, and browser channel setup.">
+<meta property="og:url" content="https://twrar.stuxie.dev/guides/macos">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="macOS Guide — TWRAR">
+<meta name="twitter:description" content="Installing and running TWRAR on macOS: the .app bundle, Gatekeeper, and browser channel setup.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
 <link rel="icon" type="image/png" href="../assets/icon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
@@ -32,7 +42,7 @@
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
-      <a href="/guides">Guides</a>
+      <a href="/guides" class="active">Guides</a>
       <a href="/changelogs">Changelogs</a>
       <a href="/releases">Releases</a>
       <a href="/#get-started">Get started</a>
@@ -53,47 +63,59 @@
 <main id="top">
   <section class="hero legal-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Disclaimer</h1>
-      <p class="hero-sub">Copyright, accuracy, accessibility and security for TWRAR and this website.</p>
+      <h1 class="page-title"><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS Guide</h1>
+      <p class="hero-sub">Fully supported - a couple of Gatekeeper and browser-detection quirks to know about.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
+      <a href="/guides" class="legal-back">&larr; All guides</a>
       <div class="legal-prose">
-        <p class="legal-meta">Last updated: 2026-09-10</p>
 
-<h2>No warranty</h2>
-      <p>TWRAR's Engine is open source under the
-      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>
-      and is provided "as is", without warranty of any kind, express or
-      implied, to the extent permitted by that license. This site is
-      provided on the same basis.</p>
+        <h2>Standalone app (recommended)</h2>
+        <p>Grab <code>TWRAR-macos.zip</code> from the
+        <a href="/releases">Releases page</a>, unzip it, and drag
+        <code>TWRAR.app</code> wherever you like - no Python install
+        needed.</p>
 
-      <h2>Your responsibility</h2>
-      <p>TWRAR drives a real browser on your behalf. You are responsible for
-      only pointing it at sites and content you own or otherwise have
-      explicit authorization to automate, and for reviewing any config
-      before running it - especially one you didn't write yourself.</p>
+        <h2>Gatekeeper</h2>
+        <p>The app isn't notarized or code-signed, so macOS will refuse to
+        open it with a plain double-click the first time
+        ("TWRAR.app" can't be opened because Apple cannot check it for
+        malicious software"). Either:</p>
+        <ul>
+          <li><strong>Right-click (or Control-click) the app &rarr; Open</strong>,
+          then confirm <strong>Open</strong> in the dialog that appears - only
+          needed once.</li>
+          <li>Or clear the quarantine flag from a terminal:
+          <code>xattr -d com.apple.quarantine /path/to/TWRAR.app</code></li>
+        </ul>
 
-      <h2>Accuracy</h2>
-      <p>Documentation and screenshots on this site are kept up to date on a
-      best-effort basis but may lag behind the latest release. The
-      <a href="https://github.com/TWRAR/Engine/blob/main/CHANGELOG.md">CHANGELOG</a>
-      is the authoritative record of what changed and when.</p>
+        <h2>Running from source</h2>
+        <pre class="code-block"><code>git clone https://github.com/TWRAR/Engine.git
+cd Engine
+pip install -r requirements.txt
+playwright install chromium
+python gui_main.py</code></pre>
+        <p>Install Python 3.10+ first if you don't have it -
+        <a href="https://brew.sh/" target="_blank" rel="noopener">Homebrew</a>'s
+        <code>brew install python</code> is the easiest route.
+        <code>playwright install chromium</code> is only needed if you
+        don't set <code>browser.executable_path</code> and leave the
+        default browser detection to fall through to Playwright's own
+        bundled Chromium instead of an app in <code>/Applications</code>.</p>
 
-      <h2>Accessibility</h2>
-      <p>This site aims for reasonable accessibility (semantic HTML, visible
-      focus states, no motion-dependent content). If something doesn't work
-      with your assistive technology, please
-      <a href="mailto:legal@stuxie.dev">let us know</a>.</p>
+        <h2>Browser detection</h2>
+        <p>macOS has no OS-level "default browser" registry to read, so
+        <code>browser.channel: default</code> falls straight back to
+        Brave (checked in <code>/Applications</code>), then Playwright's
+        bundled Chromium if Brave isn't installed. Set <code>channel</code>
+        explicitly to <code>brave</code>, <code>chrome</code>,
+        <code>edge</code>, or <code>firefox</code> to launch a specific
+        app in <code>/Applications</code> instead, or give
+        <code>browser.executable_path</code> directly.</p>
 
-      <h2>Security</h2>
-      <p>Found a security issue in the Engine or this site? Please report it
-      privately to <a href="mailto:legal@stuxie.dev">legal@stuxie.dev</a>
-      rather than opening a public issue, so it can be fixed before it's
-      disclosed.</p>
       </div>
     </div>
   </section>

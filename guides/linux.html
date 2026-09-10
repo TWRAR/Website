@@ -9,9 +9,19 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disclaimer — TWRAR</title>
-<meta name="description" content="Copyright, accuracy, accessibility and security for TWRAR and this website.">
-<link rel="canonical" href="https://twrar.stuxie.dev/legal/disclaimer">
+<title>Linux Guide — TWRAR</title>
+<meta name="description" content="Installing and running TWRAR on Linux: the standalone binary, Qt dependencies, and browser channel setup.">
+<link rel="canonical" href="https://twrar.stuxie.dev/guides/linux">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Linux Guide — TWRAR">
+<meta property="og:description" content="Installing and running TWRAR on Linux: the standalone binary, Qt dependencies, and browser channel setup.">
+<meta property="og:url" content="https://twrar.stuxie.dev/guides/linux">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Linux Guide — TWRAR">
+<meta name="twitter:description" content="Installing and running TWRAR on Linux: the standalone binary, Qt dependencies, and browser channel setup.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png">
 <link rel="icon" type="image/png" href="../assets/icon.png">
 <link rel="shortcut icon" href="../assets/favicon.ico">
 <link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
@@ -32,7 +42,7 @@
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
-      <a href="/guides">Guides</a>
+      <a href="/guides" class="active">Guides</a>
       <a href="/changelogs">Changelogs</a>
       <a href="/releases">Releases</a>
       <a href="/#get-started">Get started</a>
@@ -53,47 +63,64 @@
 <main id="top">
   <section class="hero legal-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Disclaimer</h1>
-      <p class="hero-sub">Copyright, accuracy, accessibility and security for TWRAR and this website.</p>
+      <h1 class="page-title"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux Guide</h1>
+      <p class="hero-sub">Fully supported - a couple of Qt system libraries and a chmod to know about.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
+      <a href="/guides" class="legal-back">&larr; All guides</a>
       <div class="legal-prose">
-        <p class="legal-meta">Last updated: 2026-09-10</p>
 
-<h2>No warranty</h2>
-      <p>TWRAR's Engine is open source under the
-      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>
-      and is provided "as is", without warranty of any kind, express or
-      implied, to the extent permitted by that license. This site is
-      provided on the same basis.</p>
+        <h2>Standalone binary (recommended)</h2>
+        <p>Grab <code>TWRAR-linux</code> from the
+        <a href="/releases">Releases page</a>, then make it executable and run it:</p>
+        <pre class="code-block"><code>chmod +x TWRAR-linux
+./TWRAR-linux</code></pre>
+        <p>No Python install needed - it's a self-contained PyInstaller
+        build. There's no desktop entry/launcher shipped; run it directly
+        from a terminal or file manager.</p>
 
-      <h2>Your responsibility</h2>
-      <p>TWRAR drives a real browser on your behalf. You are responsible for
-      only pointing it at sites and content you own or otherwise have
-      explicit authorization to automate, and for reviewing any config
-      before running it - especially one you didn't write yourself.</p>
+        <h2>Qt system libraries</h2>
+        <p>PySide6's Qt platform plugin needs a couple of graphics
+        libraries most desktop distros already have, but minimal/server
+        installs and some containers don't. If the GUI fails to start,
+        install them - on Debian/Ubuntu:</p>
+        <pre class="code-block"><code>sudo apt-get install libegl1 libopengl0</code></pre>
+        <p>Other distros: look for the equivalent <code>libegl</code> and
+        <code>libopengl</code> (or <code>libgl</code>) packages in your
+        package manager.</p>
 
-      <h2>Accuracy</h2>
-      <p>Documentation and screenshots on this site are kept up to date on a
-      best-effort basis but may lag behind the latest release. The
-      <a href="https://github.com/TWRAR/Engine/blob/main/CHANGELOG.md">CHANGELOG</a>
-      is the authoritative record of what changed and when.</p>
+        <h2>Running from source</h2>
+        <pre class="code-block"><code>git clone https://github.com/TWRAR/Engine.git
+cd Engine
+pip install -r requirements.txt
+playwright install chromium
+python gui_main.py</code></pre>
+        <p><code>playwright install chromium</code> is only needed if you
+        don't set <code>browser.executable_path</code> and leave the
+        default browser detection to fall through to Playwright's own
+        bundled Chromium instead of a browser already on your system.</p>
 
-      <h2>Accessibility</h2>
-      <p>This site aims for reasonable accessibility (semantic HTML, visible
-      focus states, no motion-dependent content). If something doesn't work
-      with your assistive technology, please
-      <a href="mailto:legal@stuxie.dev">let us know</a>.</p>
+        <h2>Browser detection</h2>
+        <p>Linux has no single OS-level "default browser" registry
+        TWRAR reads, so <code>browser.channel: default</code> falls
+        straight back to Brave (checked at <code>/usr/bin/brave-browser</code>
+        or <code>/usr/bin/brave</code>), then Playwright's bundled Chromium
+        if Brave isn't installed. Set <code>channel</code> explicitly to
+        <code>brave</code>, <code>chrome</code>, <code>edge</code>, or
+        <code>firefox</code> to launch a specific one from its usual
+        <code>/usr/bin/</code> path instead, or give
+        <code>browser.executable_path</code> directly for a non-standard
+        install location (e.g. a Flatpak or Snap build).</p>
 
-      <h2>Security</h2>
-      <p>Found a security issue in the Engine or this site? Please report it
-      privately to <a href="mailto:legal@stuxie.dev">legal@stuxie.dev</a>
-      rather than opening a public issue, so it can be fixed before it's
-      disclosed.</p>
+        <h2>No root required</h2>
+        <p>TWRAR no longer uses global system-wide hotkeys (the feature
+        was CLI-only, and the CLI is discontinued as of Engine v3.0.0),
+        which previously could need elevated permissions or X11 access on
+        some setups. Running the GUI needs no special privileges.</p>
+
       </div>
     </div>
   </section>
