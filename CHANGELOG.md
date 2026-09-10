@@ -4,6 +4,36 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.2.0] - 2026-09-10
+
+### Added
+- **Engine page** (`/engine`): installation, GUI walkthrough, CLI usage,
+  and config shape reference.
+- **Releases page** (`/releases` + `releases.js`): live release list
+  fetched from the Engine repo's GitHub Releases, with asset download
+  links.
+- **Changelogs page** (`/changelogs` + `changelogs.js`): tabbed live
+  changelog viewer for Engine and Website, matching TIGHC's viewer.
+  `/changelog` (singular) redirects to it, matching TIGHC's alias.
+- Header nav now links to Engine/Changelogs/Releases on every page;
+  footer's Project column links to Changelogs too.
+- `dev-server.py` now resolves pretty URLs (`/engine` → `engine.html`)
+  locally, matching GitHub Pages' production behavior.
+
+### Fixed
+- The dev-mode banner was showing unconditionally, including in
+  production: `.env-banner` was missing a `[hidden] { display: none; }`
+  override, so its own `display: flex` rule beat the browser's native
+  `hidden` attribute. Also reverted its color back to TIGHC/TS4RLS's
+  amber/black (an earlier red recolor was wrong).
+
+### Changed
+- Background now carries a subtle warm red tint in both themes,
+  matching how TIGHC (purple) and TS4RLS (green) tint theirs, instead
+  of a neutral gray.
+- "A StuxieDev Project" (footer bottom bar) is now muted instead of
+  accent-colored, and only underlines on hover.
+
 ## [1.1.1] - 2026-09-10
 
 ### Changed

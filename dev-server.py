@@ -79,7 +79,15 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             if path == prefix or path.startswith(prefix + "/"):
                 rest = path[len(prefix):].lstrip("/")
                 return os.path.join(real_dir, *rest.split("/")) if rest else real_dir
-        return super().translate_path(path)
+        translated = super().translate_path(path)
+        # Pretty URLs: GitHub Pages serves /foo from foo.html if /foo isn't a
+        # real file or directory - match that here so /engine, /releases,
+        # /changelogs work the same locally as they do in production.
+        if not os.path.exists(translated) and not path.endswith("/"):
+            with_html = translated + ".html"
+            if os.path.exists(with_html):
+                return with_html
+        return translated
 
     def log_message(self, fmt, *args):
         sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
