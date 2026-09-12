@@ -4,6 +4,15 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.7.1] - 2026-09-12
+
+### Fixed
+- **Cache-busting `?v=` query strings were stale on every page** — stuck
+  at `1.5.0` (three releases behind `VERSION.md`'s `1.7.0`), and
+  `assets/steam.html` even further behind at `1.4.3`. `CONTRIBUTING.md`
+  already documented bumping this on every release; it just hadn't been
+  done for the last two. Bumped every reference to `?v=1.7.0`.
+
 ## [1.7.0] - 2026-09-12
 
 ### Added
