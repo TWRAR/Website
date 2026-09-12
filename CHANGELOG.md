@@ -4,6 +4,15 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.4.2] - 2026-09-12
+
+### Changed
+- **Icon/logo (`assets/icon.png`, `assets/logo.png`, `assets/favicon.ico`)
+  updated to match the Engine's 3.3.2 update**: the window is now an
+  actual rectangle with slightly rounded corners instead of a
+  heavily-rounded "squircle", and the wordmark text now aligns to the
+  icon's visible window instead of sitting low against it.
+
 ## [1.4.1] - 2026-09-12
 
 ### Changed
