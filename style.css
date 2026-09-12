@@ -192,6 +192,7 @@ code {
   background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 22px;
 }
 .card p { color: var(--text-dim); margin: 0; font-size: 0.95rem; }
+.card-preview-img { width: 100%; border-radius: 8px; margin-bottom: 14px; }
 
 /* Steps */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; max-width: 640px; }

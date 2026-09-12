@@ -4,6 +4,22 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.6.0] - 2026-09-12
+
+### Added
+- **CI** (`.github/workflows/ci.yml`), ported from the sibling TIGHC
+  project's Website: a `node --test` unit-test job and an
+  `html-validate` job over every top-level HTML page.
+- **`tests/`**: `changelogs.test.js`, `versions.test.js`, and
+  `releases.test.js` — unit tests for the pure logic those scripts
+  already exported via `module.exports` but nothing previously
+  exercised.
+
+### Fixed
+- Two inline `style="..."` attributes on `steam.html`'s preview images
+  (`no-inline-style` html-validate failures) — moved into a new
+  `.card-preview-img` class in `style.css`.
+
 ## [1.5.0] - 2026-09-12
 
 ### Added
