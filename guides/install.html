@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function () {
+  try {
+    var t = localStorage.getItem("twrar-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Install Guide — TWRAR</title>
+<meta name="description" content="Deploying a copy of the TWRAR website: GitHub Pages, custom domains, and any other static host.">
+<link rel="canonical" href="https://twrar.stuxie.dev/guides/install">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Install Guide — TWRAR">
+<meta property="og:description" content="Deploying a copy of the TWRAR website: GitHub Pages, custom domains, and any other static host.">
+<meta property="og:url" content="https://twrar.stuxie.dev/guides/install">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png?v=1.5.0">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Install Guide — TWRAR">
+<meta name="twitter:description" content="Deploying a copy of the TWRAR website: GitHub Pages, custom domains, and any other static host.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png?v=1.5.0">
+<link rel="icon" type="image/png" href="../assets/icon.png?v=1.5.0">
+<link rel="shortcut icon" href="../assets/favicon.ico?v=1.5.0">
+<link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="../assets/fontawesome/css/solid.min.css">
+<link rel="stylesheet" href="../assets/fontawesome/css/brands.min.css">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="env-banner env-banner-dev" id="dev-banner" hidden><span><strong class="env-banner-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Development Mode</strong><span class="env-banner-detail" id="dev-banner-detail"></span></span></div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand">
+      <img src="../assets/logo.png?v=1.5.0" alt="TWRAR" class="brand-logo">
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <a href="/#features">Features</a>
+      <a href="/#how-it-works">How it works</a>
+      <a href="/engine">Engine</a>
+      <a href="/steam">Steam Artwork</a>
+      <a href="/guides" class="active">Guides</a>
+      <a href="/changelogs">Changelogs</a>
+      <a href="/releases">Releases</a>
+      <a href="/#get-started">Get started</a>
+      <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+    </nav>
+    <div class="header-controls">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero legal-hero">
+    <div class="container hero-inner">
+      <h1 class="page-title"><i class="fa-solid fa-server" aria-hidden="true"></i> Install Guide</h1>
+      <p class="hero-sub">Deploying a copy of this website to a real host. Working on the code instead? See the <a href="/guides/developer">Developer Guide</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <a href="/guides" class="legal-back">&larr; All guides</a>
+      <div class="legal-prose">
+
+        <h2>Requirements</h2>
+        <p>Nothing beyond a place to serve static files — no PHP, no
+        database, no build step. GitHub Pages (what production uses) or
+        any other static host (Netlify, Vercel, S3, plain Apache/Nginx)
+        all work identically, since it's just HTML/CSS/JS.</p>
+
+        <h2>Option A: GitHub Pages (what production uses)</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <div><p>Push this repo to GitHub.</p></div>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <div><p>In the repo's <strong>Settings &rarr; Pages</strong>,
+            set the source to <strong>Deploy from a branch</strong>,
+            branch <code>main</code>, folder <code>/ (root)</code>.</p></div>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <div><p>For a custom domain, set it under
+            <strong>Settings &rarr; Pages &rarr; Custom domain</strong> —
+            GitHub writes/validates the <code>CNAME</code> file for you
+            when you do this via the UI (this repo's <code>CNAME</code>
+            is already set to <code>twrar.stuxie.dev</code>; replace it
+            with your own domain, or remove it to use the default
+            <code>&lt;org&gt;.github.io/Website</code> URL instead). Point
+            your DNS at GitHub Pages per
+            <a href="https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">GitHub's custom domain docs</a> —
+            the exact record values are documented there rather than
+            repeated here, since GitHub can change them.</p></div>
+          </li>
+          <li>
+            <span class="step-num">4</span>
+            <div><p>Push to <code>main</code> — GitHub Pages redeploys
+            automatically. No separate build or deploy step.</p></div>
+          </li>
+        </ol>
+
+        <h2>Option B: Any other static host</h2>
+        <p>Upload everything in this repo except <code>.git/</code>,
+        <code>dev-server.py</code>/<code>.sh</code>/<code>.bat</code>,
+        and <code>dev-config.js</code> (if present — it's gitignored and
+        only exists locally) to your host's document root. That's it —
+        there's no server-side code to configure.</p>
+        <p>If you're not using GitHub Pages, delete (or don't upload)
+        <code>CNAME</code> — it only matters to GitHub Pages.</p>
+
+        <h2>Test the install</h2>
+        <ul>
+          <li>Visit your domain — you should see the TWRAR landing
+          page, not a 404 or blank page.</li>
+          <li>Visit <code>/engine</code> and <code>/changelogs</code> —
+          these fetch live content from
+          <code>github.com/TWRAR/Engine</code> and
+          <code>github.com/TWRAR/Website</code> at runtime via
+          <code>fetch()</code>, which needs an <code>http(s)://</code>
+          origin. This only matters if you're testing by double-clicking
+          the HTML files directly (<code>file://</code>) instead of
+          through a real host — any static host, GitHub Pages included,
+          serves over <code>http(s)://</code> by default.</li>
+          <li>Visit <code>/legal</code> — confirms the legal hub and its
+          six sub-pages made it across.</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+        <ul>
+          <li><strong>404 on every page.</strong> Pages source isn't set
+          to <code>main</code> / root — check
+          <strong>Settings &rarr; Pages</strong>.</li>
+          <li><strong>Custom domain shows GitHub's default 404 or a DNS
+          error.</strong> DNS record doesn't point at GitHub Pages yet,
+          or hasn't propagated — check
+          <strong>Settings &rarr; Pages</strong> for the domain's
+          verification status.</li>
+          <li><strong><code>/engine</code>/<code>/changelogs</code> show
+          nothing, or the console shows a fetch/CORS error.</strong>
+          You're opening the file directly (<code>file://</code>) instead
+          of via a real HTTP host — see the
+          <a href="/guides/developer">Developer Guide</a> to serve it
+          locally over HTTP instead.</li>
+          <li><strong>Certificate warning on the custom domain.</strong>
+          GitHub Pages' automatic HTTPS cert can take up to 24h to
+          provision after DNS is pointed correctly — wait and recheck
+          <strong>Settings &rarr; Pages</strong>.</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="footer-brand-link">
+        <img src="../assets/icon.png?v=1.5.0" alt="" class="footer-icon">
+        <span>TWRAR</span>
+      </a>
+      <p class="footer-tagline">The Website Recorder And Replayer</p>
+      <p class="footer-versions"><span data-version="engine" data-version-prefix="Engine ">Engine vX.Y.Z</span><span data-version="website" data-version-prefix="Website ">Website vX.Y.Z</span></p>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">Project</h3>
+      <a href="https://github.com/TWRAR/Engine"><i class="fa-brands fa-github" aria-hidden="true"></i> Engine repo</a>
+      <a href="https://github.com/TWRAR/Website"><i class="fa-brands fa-github" aria-hidden="true"></i> Website repo</a>
+      <a href="https://github.com/TWRAR/Engine/releases"><i class="fa-solid fa-download" aria-hidden="true"></i> Releases</a>
+      <a href="/changelogs"><i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i> Changelogs</a>
+      <a href="/guides"><i class="fa-solid fa-book" aria-hidden="true"></i> Guides</a>
+    </div>
+    <div class="footer-col">
+      <h3 class="footer-heading">More</h3>
+      <a href="/assets/steam"><i class="fa-brands fa-steam" aria-hidden="true"></i> Steam Artwork</a>
+      <a href="https://github.com/TWRAR/Engine/issues"><i class="fa-solid fa-comment" aria-hidden="true"></i> Issues &amp; contact</a>
+      <a href="/legal"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Boring Legal Stuff</a>
+      <a href="https://stuxie.dev">Written &amp; Maintained by <img src="https://github.com/StuxieDev.png" alt="" class="footer-avatar"> StuxieDev</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p class="footer-note">
+        Only point TWRAR at sites and content you own or otherwise have
+        explicit authorization to automate.
+      </p>
+      <p class="footer-note"><a href="https://projects.stuxie.dev">A StuxieDev Project</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+<script src="../dev-config.js"></script>
+<script src="../versions.js"></script>
+</body>
+</html>

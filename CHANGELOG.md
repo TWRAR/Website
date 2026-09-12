@@ -4,6 +4,38 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.7.0] - 2026-09-12
+
+### Added
+- **`guides/install.html`** and **`guides/developer.html`** — deploying a
+  copy of this site (GitHub Pages/custom domain/any static host) and
+  running it locally (cloning alongside the Engine, `dev-server.py`, dev
+  mode), adapted from TIGHC's `INSTALL.md`/`DEV_GUIDE.md` content but as
+  guide pages instead of root-level markdown files, matching this site's
+  own `guides/` pattern. Linked from `/guides` and from the README's
+  "Local development"/"Deploying" sections.
+- **`404.html`** — a custom error page (GitHub Pages serves it
+  automatically for any unmatched path in production, and `dev-server.py`
+  already serves `foo.html` for `/foo`, so no server-side change was
+  needed here to preview it locally).
+
+### Changed
+- **`guides.html` → `guides/index.html`, `legal.html` → `legal/index.html`**
+  — each hub page now lives alongside its own sub-pages instead of
+  beside the folder. `steam.html` stays a flat file (it has no
+  sub-pages). All internal links were already root-relative
+  (`/guides`, `/legal`, ...) so nothing else needed updating; only the
+  moved pages' own relative asset/script paths gained a `../`.
+
+### Removed
+- **`changelog.js`** — a stray, unreferenced one-line placeholder file
+  (`changelog.html` redirects client-side and never loaded it).
+
+### Fixed
+- README's `Structure` section was an abbreviated summary rather than
+  every actual file. Rewrote it to exhaustively list the current file
+  set, and added a `Testing` section.
+
 ## [1.6.0] - 2026-09-12
 
 ### Added

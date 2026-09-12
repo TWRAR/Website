@@ -15,8 +15,8 @@ For the actual TWRAR tool (the GUI/CLI), see the
 ## Adding a legal page
 
 The six pages under `legal/` are each their own `.html` file, linked from
-`legal.html`'s hub grid and from every page's footer. Keep new/edited
-copy in the same plain-English tone as the existing pages.
+`legal/index.html`'s hub grid and from every page's footer. Keep
+new/edited copy in the same plain-English tone as the existing pages.
 
 ## Release flow
 

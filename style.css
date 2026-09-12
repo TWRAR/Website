@@ -159,6 +159,7 @@ code {
   background: radial-gradient(ellipse at top, var(--hero-glow), transparent 60%);
 }
 .hero-logo { max-width: 420px; width: 100%; margin-bottom: 28px; }
+.error-code { font-size: 5rem; font-weight: 800; color: var(--accent); margin: 0 0 8px; line-height: 1; }
 .hero-tagline { font-size: 1.3rem; font-weight: 600; margin: 0 auto 12px; max-width: 760px; }
 .hero-sub { color: var(--text-dim); max-width: 580px; margin: 0 auto 28px; }
 .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
