@@ -29,6 +29,7 @@ releases.html             # TWRAR Engine releases, fetched live from the GitHub 
 releases.js               # fetches and renders TWRAR/Engine's GitHub releases for releases.html
 steam.html                # Steam library artwork landing hub (no sub-pages, so no /steam folder)
 404.html                  # custom error page, served automatically by GitHub Pages
+favicon.ico               # site-root copy browsers fall back to regardless of <link rel="icon">
 style.css                 # shared styles
 script.js                 # mobile nav toggle and the light/dark theme toggle
 versions.js               # fetches VERSION.md from Engine/Website on load, populates version badges
