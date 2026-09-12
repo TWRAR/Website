@@ -44,7 +44,9 @@ into every page, so it's obvious you're not looking at production. Pass
 1. Update `CHANGELOG.md`.
 2. Bump `VERSION.md` (semantic versioning).
 3. Update `README.md` if structure changed.
-4. Run `commit.bat` (or `commit.sh` on POSIX) - it commits everything
+4. Bump the `?v=X.Y.Z` query string on every `logo.png`/`icon.png`/
+   `favicon.ico` reference across all pages (see `CONTRIBUTING.md`).
+5. Run `commit.bat` (or `commit.sh` on POSIX) - it commits everything
    staged/unstaged as `Release vX.Y.Z` and tags `vX.Y.Z`, both read from
    `VERSION.md`.
 

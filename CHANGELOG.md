@@ -4,6 +4,19 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.4.3] - 2026-09-12
+
+### Added
+- **Cache-busting `?v=X.Y.Z` query string** on every `assets/logo.png`,
+  `assets/icon.png`, and `assets/favicon.ico` reference across every page
+  (matching the TS4RLS project's convention), so a released icon/logo
+  update isn't served stale from a browser or CDN cache. Documented as a
+  release-flow step in `README.md`/`CONTRIBUTING.md`.
+
+### Fixed
+- `index.html`/`engine.html` still told readers to run `python
+  gui_main.py` - stale since the Engine's 3.2.0 rename to `gui.py`.
+
 ## [1.4.2] - 2026-09-12
 
 ### Changed

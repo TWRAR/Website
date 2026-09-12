@@ -23,6 +23,13 @@ copy in the same plain-English tone as the existing pages.
 1. Update `CHANGELOG.md`.
 2. Bump `VERSION.md` (semantic versioning).
 3. Update `README.md` if structure changed.
-4. Run `commit.bat` (or `commit.sh` on POSIX) - it commits everything
+4. **Bump the `?v=X.Y.Z` query string** on every `assets/logo.png`,
+   `assets/icon.png`, and `assets/favicon.ico` reference across every
+   `.html` page (including `guides/*.html` and `legal/*.html`) to match
+   the new version - this cache-busts them so a deploy's updated icon/logo
+   doesn't keep getting served stale from a browser or CDN cache. Easiest
+   done as a single find-and-replace of the old version string for the new
+   one across all pages at once.
+5. Run `commit.bat` (or `commit.sh` on POSIX) - it commits everything
    staged/unstaged as `Release vX.Y.Z` and tags `vX.Y.Z`, both read from
    `VERSION.md`.
