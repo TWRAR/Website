@@ -94,6 +94,23 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
                 return with_html
         return translated
 
+    def send_error(self, code, message=None, explain=None):
+        # GitHub Pages serves 404.html for any missing path in production;
+        # SimpleHTTPRequestHandler has no equivalent, so without this a 404
+        # locally looks nothing like what visitors actually see.
+        if code == 404:
+            not_found = os.path.join(WEB_DIR, "404.html")
+            if os.path.isfile(not_found):
+                with open(not_found, "rb") as f:
+                    body = f.read()
+                self.send_response(404)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
+        super().send_error(code, message, explain)
+
     def log_message(self, fmt, *args):
         sys.stderr.write("%s - %s\n" % (self.address_string(), fmt % args))
 

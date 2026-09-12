@@ -4,6 +4,15 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.7.2] - 2026-09-13
+
+### Fixed
+- **`dev-server.py` had no local equivalent of GitHub Pages' 404
+  handling** — `404.html` already existed and is used in production, but
+  a missing path returned Python's bare `http.server` error page locally
+  instead. Now serves `404.html` the same way TS4RLS/TIGHC's dev servers
+  already do it.
+
 ## [1.7.1] - 2026-09-12
 
 ### Fixed
