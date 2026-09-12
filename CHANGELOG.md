@@ -4,6 +4,16 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.4.1] - 2026-09-12
+
+### Changed
+- **Icon/logo (`assets/icon.png`, `assets/logo.png`, `assets/favicon.ico`)
+  updated to match the Engine's new browser-window icon** (chrome/tab bar
+  across the top, recording dot + play triangle + cursor inside it) instead
+  of a plain rounded square. `favicon.ico` is now generated from the same
+  glyph as the app icon (via the Engine's `scripts/generate_icon.py`)
+  instead of being maintained by hand.
+
 ## [1.4.0] - 2026-09-10
 
 ### Added

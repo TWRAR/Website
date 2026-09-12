@@ -7,7 +7,7 @@
 Source for [twrar.stuxie.dev](https://twrar.stuxie.dev), the landing site
 for [TWRAR](https://github.com/TWRAR) (The Website Recorder And Replayer).
 
-**Version 1.0.0** — see [CHANGELOG.md](CHANGELOG.md) for release history.
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 Website: https://twrar.stuxie.dev  
 Repository: https://github.com/TWRAR/Website  
