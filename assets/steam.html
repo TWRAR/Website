@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>(function () {
+  try {
+    var t = localStorage.getItem("twrar-theme");
+    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+  } catch (e) {}
+})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steam artwork download — TWRAR</title>
+<meta name="description" content="Download the TWRAR Steam library artwork set (grid capsules, hero, logo).">
+<link rel="canonical" href="https://twrar.stuxie.dev/assets/steam">
+<meta http-equiv="refresh" content="0; url=https://github.com/TWRAR/Engine/raw/steam_assets/TWRAR_Steam_Assets.zip">
+<link rel="icon" type="image/png" href="/assets/icon.png?v=1.4.3">
+<link rel="shortcut icon" href="/assets/favicon.ico?v=1.4.3">
+<link rel="stylesheet" href="/assets/fontawesome/css/fontawesome.min.css">
+<link rel="stylesheet" href="/assets/fontawesome/css/brands.min.css">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .redirect-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+  }
+  .redirect-logo { width: 220px; max-width: 60vw; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+<div class="redirect-wrap">
+  <img src="/assets/logo.png?v=1.4.3" alt="TWRAR" class="redirect-logo">
+  <h1 class="page-title">Downloading Steam artwork&hellip;</h1>
+  <p class="hero-sub">
+    Your download should start automatically. If it doesn't,
+    <a href="https://github.com/TWRAR/Engine/raw/steam_assets/TWRAR_Steam_Assets.zip">click here</a>.
+  </p>
+  <div class="hero-actions">
+    <a href="https://github.com/TWRAR/Engine/raw/steam_assets/TWRAR_Steam_Assets.zip" class="btn btn-accent">
+      <i class="fa-brands fa-steam" aria-hidden="true"></i> Download TWRAR_Steam_Assets.zip
+    </a>
+    <a href="/steam" class="btn btn-ghost">Back to Steam artwork</a>
+  </div>
+</div>
+<script>
+  window.location.replace("https://github.com/TWRAR/Engine/raw/steam_assets/TWRAR_Steam_Assets.zip");
+</script>
+</body>
+</html>

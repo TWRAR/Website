@@ -9,19 +9,19 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Changelogs — TWRAR</title>
-<meta name="description" content="Full version history for TWRAR Engine and TWRAR Website.">
-<link rel="canonical" href="https://twrar.stuxie.dev/changelogs">
+<title>Steam artwork — TWRAR</title>
+<meta name="description" content="Custom Steam library artwork for TWRAR — grid capsules, hero, and logo, ready to apply to your non-Steam game shortcut.">
+<link rel="canonical" href="https://twrar.stuxie.dev/steam">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TWRAR">
-<meta property="og:title" content="Changelogs — TWRAR">
-<meta property="og:description" content="Full version history for TWRAR Engine and TWRAR Website.">
-<meta property="og:url" content="https://twrar.stuxie.dev/changelogs">
-<meta property="og:image" content="https://twrar.stuxie.dev/assets/logo.png?v=1.5.0">
+<meta property="og:title" content="Steam artwork — TWRAR">
+<meta property="og:description" content="Custom Steam library artwork for TWRAR — grid capsules, hero, and logo, ready to apply to your non-Steam game shortcut.">
+<meta property="og:url" content="https://twrar.stuxie.dev/steam">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/steam/wide_cover.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Changelogs — TWRAR">
-<meta name="twitter:description" content="Full version history for TWRAR Engine and TWRAR Website.">
-<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/logo.png?v=1.5.0">
+<meta name="twitter:title" content="Steam artwork — TWRAR">
+<meta name="twitter:description" content="Custom Steam library artwork for TWRAR — grid capsules, hero, and logo, ready to apply to your non-Steam game shortcut.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/steam/wide_cover.png">
 <link rel="icon" type="image/png" href="assets/icon.png?v=1.5.0">
 <link rel="shortcut icon" href="assets/favicon.ico?v=1.5.0">
 <link rel="stylesheet" href="assets/fontawesome/css/fontawesome.min.css">
@@ -42,9 +42,9 @@
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
-      <a href="/steam">Steam Artwork</a>
+      <a href="/steam" class="active">Steam Artwork</a>
       <a href="/guides">Guides</a>
-      <a href="/changelogs" class="active">Changelogs</a>
+      <a href="/changelogs">Changelogs</a>
       <a href="/releases">Releases</a>
       <a href="/#get-started">Get started</a>
       <a href="https://github.com/TWRAR/Engine" class="nav-gh"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
@@ -65,28 +65,37 @@
 
   <section class="hero profiles-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Changelogs</h1>
+      <h1 class="page-title">Steam library artwork</h1>
       <p class="hero-sub">
-        Version history for both TWRAR repositories, fetched live from GitHub.
+        TWRAR ships with a full set of custom Steam library artwork — grid
+        capsules, a hero banner, and a logo — for adding it to your Steam
+        library as a non-Steam game.
       </p>
+      <div class="hero-actions">
+        <a href="/assets/steam" class="btn btn-accent"><i class="fa-brands fa-steam" aria-hidden="true"></i> Download the artwork (.zip)</a>
+        <a href="/guides/steam" class="btn btn-ghost">How to apply it</a>
+      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-
-      <div class="cl-tabs" role="tablist">
-        <button type="button" class="cl-tab active" data-repo="engine" role="tab">Engine<span class="tab-ver" data-version-inline="engine"></span></button>
-        <button type="button" class="cl-tab" data-repo="website" role="tab">Website<span class="tab-ver" data-version-inline="website"></span></button>
+      <div class="grid grid-2">
+        <div class="card">
+          <img src="assets/steam/wide_cover.png" alt="TWRAR Steam landscape grid capsule" style="width:100%; border-radius:8px; margin-bottom:14px;">
+          <h3>Grid capsules</h3>
+          <p>Portrait and landscape capsule art for the Steam library grid view.</p>
+        </div>
+        <div class="card">
+          <img src="assets/steam/background.png" alt="TWRAR Steam library hero background" style="width:100%; border-radius:8px; margin-bottom:14px;">
+          <h3>Library hero &amp; logo</h3>
+          <p>The wide hero banner shown behind your library page, plus a transparent logo overlay.</p>
+        </div>
       </div>
-
-      <div id="cl-engine" class="cl-panel active">
-        <p class="cl-loading">Loading&hellip;</p>
-      </div>
-      <div id="cl-website" class="cl-panel">
-        <p class="cl-loading">Loading&hellip;</p>
-      </div>
-
+      <p class="section-note">
+        Want the exact file sizes and how to apply each one in Steam? See the
+        <a href="/guides/steam">full guide</a>.
+      </p>
     </div>
   </section>
 
@@ -132,6 +141,5 @@
 <script src="script.js"></script>
 <script src="dev-config.js"></script>
 <script src="versions.js"></script>
-<script src="changelogs.js"></script>
 </body>
 </html>

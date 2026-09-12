@@ -4,6 +4,22 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.5.0] - 2026-09-12
+
+### Added
+- **Steam library artwork pages**, matching the sibling TS4RLS project's
+  site: `/steam` (landing hub), `/guides/steam` (full asset list + how to
+  apply it), and `/assets/steam` (zip-download redirect to the Engine's
+  `steam_assets` branch). "Steam Artwork" added to every page's nav and
+  footer. `assets/steam/*.png` copied from the Engine's
+  `scripts/steam_asset_builder.py` output.
+
+### Fixed
+- `guides/windows.html`, `guides/macos.html`, `guides/linux.html` still
+  told readers to run `python gui_main.py` - stale since the Engine's
+  3.2.0 rename to `gui.py` (the same fix `index.html`/`engine.html` got
+  in 1.4.3).
+
 ## [1.4.3] - 2026-09-12
 
 ### Added

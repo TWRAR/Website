@@ -9,9 +9,19 @@
   } catch (e) {}
 })();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms and Ethics — TWRAR</title>
-<meta name="description" content="The rules for using this site, and using TWRAR responsibly.">
-<link rel="canonical" href="https://twrar.stuxie.dev/legal/terms">
+<title>Steam artwork guide — TWRAR</title>
+<meta name="description" content="How to add TWRAR to Steam as a non-Steam game and apply its custom library artwork — asset sizes, slots, and step-by-step instructions.">
+<link rel="canonical" href="https://twrar.stuxie.dev/guides/steam">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TWRAR">
+<meta property="og:title" content="Steam artwork guide — TWRAR">
+<meta property="og:description" content="How to add TWRAR to Steam as a non-Steam game and apply its custom library artwork.">
+<meta property="og:url" content="https://twrar.stuxie.dev/guides/steam">
+<meta property="og:image" content="https://twrar.stuxie.dev/assets/steam/wide_cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Steam artwork guide — TWRAR">
+<meta name="twitter:description" content="How to add TWRAR to Steam as a non-Steam game and apply its custom library artwork.">
+<meta name="twitter:image" content="https://twrar.stuxie.dev/assets/steam/wide_cover.png">
 <link rel="icon" type="image/png" href="../assets/icon.png?v=1.5.0">
 <link rel="shortcut icon" href="../assets/favicon.ico?v=1.5.0">
 <link rel="stylesheet" href="../assets/fontawesome/css/fontawesome.min.css">
@@ -32,7 +42,7 @@
       <a href="/#features">Features</a>
       <a href="/#how-it-works">How it works</a>
       <a href="/engine">Engine</a>
-      <a href="/steam">Steam Artwork</a>
+      <a href="/steam" class="active">Steam Artwork</a>
       <a href="/guides">Guides</a>
       <a href="/changelogs">Changelogs</a>
       <a href="/releases">Releases</a>
@@ -52,41 +62,95 @@
 </header>
 
 <main id="top">
-  <section class="hero legal-hero">
+
+  <section class="hero profiles-hero">
     <div class="container hero-inner">
-      <h1 class="page-title">Terms and Ethics</h1>
-      <p class="hero-sub">The rules for using this site, and using TWRAR responsibly.</p>
+      <a href="/steam" class="legal-back">&larr; Back to Steam artwork</a>
+      <h1 class="page-title">Adding TWRAR to Steam</h1>
+      <p class="hero-sub">
+        Add the TWRAR executable to your Steam library as a non-Steam
+        game, then apply the artwork below for a native-looking library
+        entry.
+      </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <a href="/legal" class="legal-back">&larr; Boring Legal Stuff</a>
-      <div class="legal-prose">
-        <p class="legal-meta">Last updated: 2026-09-10</p>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <strong>Add the game.</strong>
+            <p>In Steam: <strong>Games &rarr; Add a Non-Steam Game to My
+            Library</strong>, then browse to <code>TWRAR.exe</code>.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <strong>Set the artwork.</strong>
+            <p>In your Library, right-click the new entry &rarr;
+            <strong>Manage &rarr; Set custom artwork</strong>, and upload
+            the matching file below for each slot (grid, hero, logo, icon).</p>
+          </div>
+        </li>
+      </ol>
 
-<h2>Using this site</h2>
-      <p>This site is provided as-is, for information about TWRAR. Don't
-      attempt to disrupt it, scrape it abusively, or use it to distribute
-      malware.</p>
-
-      <h2>Using TWRAR</h2>
-      <p>TWRAR drives a real browser to click, fill, and scrape pages on your
-      behalf, based on a config you write or record. <strong>Only point it
-      at sites and content you own or otherwise have explicit authorization
-      to automate.</strong> Do not use it against third-party sites without
-      permission - that's on you, not on us.</p>
-      <p>TWRAR's Engine is licensed under the
-      <a href="https://github.com/TWRAR/Engine/blob/main/LICENSE.md">GPL-3.0-or-later</a>.
-      It's provided without warranty of any kind, to the extent permitted by
-      that license.</p>
-
-      <h2>Changes</h2>
-      <p>These terms may be updated as the project evolves; the "Last
-      updated" date above reflects the latest revision.</p>
-      </div>
+      <p class="section-note">
+        For the full walkthrough with screenshots, see this community
+        guide: <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3582792038" target="_blank" rel="noopener">Adding custom artwork to non-Steam games</a>.
+      </p>
     </div>
   </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="page-title" style="font-size:1.5rem;">Asset list</h2>
+      <p class="section-lede">Everything below is bundled in <code>assets/steam/</code> and in the zip.</p>
+
+      <div class="steam-asset-grid">
+        <div class="steam-asset-card">
+          <h3>cover.png</h3>
+          <p>600 &times; 900 — Portrait grid capsule</p>
+        </div>
+        <div class="steam-asset-card">
+          <h3>wide_cover.png</h3>
+          <p>920 &times; 430 — Landscape grid capsule</p>
+        </div>
+        <div class="steam-asset-card">
+          <h3>background.png</h3>
+          <p>3840 &times; 1240 — Library hero</p>
+        </div>
+        <div class="steam-asset-card">
+          <h3>logo.png</h3>
+          <p>1280 &times; 720 — Library logo, icon stacked over text (transparent background)</p>
+        </div>
+        <div class="steam-asset-card">
+          <h3>logo_horizontal.png</h3>
+          <p>1280 &times; 720 — Library logo, icon beside text (transparent background)</p>
+        </div>
+        <div class="steam-asset-card">
+          <h3>icon.png</h3>
+          <p>256 &times; 256 — Library icon (transparent background)</p>
+        </div>
+      </div>
+      <p class="section-note">
+        Two logo styles are included for the same Library logo slot — pick
+        whichever fits better and upload that one.
+      </p>
+
+      <div class="hero-actions get-started-actions">
+        <a href="/assets/steam" class="btn btn-accent"><i class="fa-brands fa-steam" aria-hidden="true"></i> Download TWRAR_Steam_Assets.zip</a>
+      </div>
+      <p class="section-note">
+        Always up to date with the latest release. Also available from the
+        app's About tab (<strong>Save Steam artwork (.zip)...</strong>) or
+        as an asset on any <a href="/releases">Release</a>.
+      </p>
+    </div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
