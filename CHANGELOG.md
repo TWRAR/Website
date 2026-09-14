@@ -4,6 +4,18 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.2] - 2026-09-14
+
+### Fixed
+- **`releases.html`'s hero section was missing the "Download Steam
+  artwork (.zip)" button** present on the sibling TS4RLS/TIGHC sites —
+  added it back, linking to `/assets/steam`.
+- The version badge in that same hero section had a hardcoded stale
+  "Engine v2.0.2" instead of the "Engine vX.Y.Z" placeholder `versions.js`
+  overwrites at runtime — corrected for consistency with the sibling
+  sites (cosmetic only, since JS was already replacing the text; only
+  affected the pre-JS/no-JS fallback appearance).
+
 ## [1.8.1] - 2026-09-14
 
 ### Fixed
