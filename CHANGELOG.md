@@ -4,6 +4,18 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.4] - 2026-09-14
+
+### Fixed
+- **The footer's "Steam Artwork" link pointed at `/assets/steam`**
+  (the direct .zip-download redirect) **instead of `/steam`** (the actual
+  artwork landing/gallery page) — present on every single page, since the
+  footer markup is duplicated per-page rather than templated. The header
+  nav's own "Steam Artwork" link was already correct; only the footer
+  copy had the wrong target. The three legitimate "Download the artwork
+  (.zip)" buttons (on `/steam` and `/guides/steam`) still correctly point
+  at `/assets/steam`.
+
 ## [1.8.3] - 2026-09-14
 
 ### Changed
