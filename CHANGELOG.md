@@ -4,6 +4,20 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.3] - 2026-09-14
+
+### Changed
+- **`steam.html` no longer stores its own copy of Steam artwork.**
+  `assets/steam/` here was a stale, manually-dropped duplicate that
+  nothing kept in sync (this is exactly why it was still showing the
+  pre-v3.6.2 icon after the Engine's chrome-dot fix) — removed it
+  entirely; the page's preview images now hotlink the Engine repo's raw
+  GitHub URLs directly (the single source of truth).
+- **The preview gallery only showed 2 of the 6 generated assets**
+  (grid capsule and hero, each standing in for a pair). Expanded to one
+  card per actual file: both grid capsule orientations, the hero, and
+  both logo variants, plus the small library icon.
+
 ## [1.8.2] - 2026-09-14
 
 ### Fixed
