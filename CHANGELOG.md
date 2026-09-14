@@ -4,6 +4,14 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.1] - 2026-09-14
+
+### Fixed
+- Synced `assets/favicon.ico`, `assets/icon.png`, `assets/logo.png`, and
+  the site-root `favicon.ico` from the Engine repo's corrected icon (its
+  three browser-chrome dots are now aligned to the top-left corner instead
+  of drifting toward center — see the Engine's v3.6.2 changelog entry).
+
 ## [1.8.0] - 2026-09-13
 
 ### Added
