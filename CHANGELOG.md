@@ -4,6 +4,11 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.5] - 2026-09-15
+
+### Fixed
+- Every page's footer credit (`README.md` and all 20 site pages, including `/legal/*`) now uses the hosted `https://global.media.stuxie.dev/icon.png` StuxieDev icon instead of the live GitHub avatar shorthand
+
 ## [1.8.4] - 2026-09-14
 
 ### Fixed
