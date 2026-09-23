@@ -4,6 +4,11 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.6] - 2026-09-23
+
+### Fixed
+- GitHub Pages was using the legacy branch-deploy build system, which can silently stop auto-deploying with no error recorded anywhere (discovered on SeasonalOverlaysLibrary — its live site served stale content for over an hour with no visible failure). Switched to GitHub Actions-based Pages deployment (`.github/workflows/pages.yml`), making every deploy an ordinary, observable CI run instead.
+
 ## [1.8.5] - 2026-09-15
 
 ### Fixed
