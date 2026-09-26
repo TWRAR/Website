@@ -2,7 +2,7 @@
 
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { escapeHtml, inlineFormat, sectionClass, parseChangelog } = require("../changelogs.js");
+const { escapeHtml, inlineFormat, sectionClass, sectionRank, sortSections, SECTION_ORDER, parseChangelog } = require("../changelogs.js");
 
 test("escapeHtml", async (t) => {
   await t.test("escapes the HTML-significant characters", () => {
@@ -60,11 +60,72 @@ test("sectionClass", async (t) => {
     assert.equal(sectionClass("FIXED"), "cl-label-fixed");
     assert.equal(sectionClass("Breaking Changes"), "cl-label-breaking");
     assert.equal(sectionClass("security"), "cl-label-security");
+    assert.equal(sectionClass("Deprecated"), "cl-label-deprecated");
   });
 
   await t.test("falls back to cl-label-other for unknown sections", () => {
-    assert.equal(sectionClass("Deprecated"), "cl-label-other");
+    assert.equal(sectionClass("Notes"), "cl-label-other");
     assert.equal(sectionClass(""), "cl-label-other");
+  });
+});
+
+test("section ordering", async (t) => {
+  await t.test("SECTION_ORDER is Added, Changed, Fixed, Removed, Security, Deprecated", () => {
+    assert.deepEqual(SECTION_ORDER, ["added", "changed", "fixed", "removed", "security", "deprecated"]);
+  });
+
+  await t.test("sectionRank ranks known types in order and unknown types last", () => {
+    assert.ok(sectionRank("Added") < sectionRank("Changed"));
+    assert.ok(sectionRank("Changed") < sectionRank("Fixed"));
+    assert.ok(sectionRank("Fixed") < sectionRank("Removed"));
+    assert.ok(sectionRank("Removed") < sectionRank("Security"));
+    assert.ok(sectionRank("Security") < sectionRank("Deprecated"));
+    assert.ok(sectionRank("Deprecated") < sectionRank("Breaking Changes"));
+  });
+
+  await t.test("sortSections reorders sections within each release, unknown types last", () => {
+    const md = [
+      "## 2.0.0",
+      "intro prose",
+      "",
+      "### Deprecated",
+      "- d",
+      "",
+      "### Breaking Changes",
+      "- b",
+      "",
+      "### Fixed",
+      "- f",
+      "",
+      "### Added",
+      "- a",
+      "",
+      "## 1.0.0",
+      "### Security",
+      "- s",
+      "### Changed",
+      "- c",
+    ].join("\n");
+
+    const sorted = sortSections(md);
+    const headings = sorted.split("\n").filter((l) => /^#{2,3} /.test(l));
+    assert.deepEqual(headings, [
+      "## 2.0.0", "### Added", "### Fixed", "### Deprecated", "### Breaking Changes",
+      "## 1.0.0", "### Changed", "### Security",
+    ]);
+    // prose before the first section stays directly under its release heading
+    assert.match(sorted, /^## 2\.0\.0\nintro prose\n/);
+    // each section keeps its own items
+    assert.match(sorted, /### Added\n- a/);
+    assert.match(sorted, /### Security\n- s/);
+  });
+
+  await t.test("parseChangelog renders sections in the fixed order regardless of markdown order", () => {
+    const md = "## 1.0.0\n### Removed\n- r\n### Security\n- s\n### Added\n- a\n### Changed\n- c\n";
+    const html = parseChangelog(md);
+    const labels = [...html.matchAll(/<span class="cl-label [^"]+">([^<]+)<\/span>/g)].map((m) => m[1]);
+    assert.deepEqual(labels, ["Added", "Changed", "Removed", "Security"]);
+    assert.match(html, /Added<\/span><ul class="cl-list"><li>a<\/li><\/ul>/);
   });
 });
 

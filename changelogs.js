@@ -14,8 +14,66 @@
     "fixed":            "cl-label-fixed",
     "removed":          "cl-label-removed",
     "breaking changes": "cl-label-breaking",
-    "security":         "cl-label-security"
+    "security":         "cl-label-security",
+    "deprecated":       "cl-label-deprecated"
   };
+
+  // Fixed display order for "### <Type>" sections within a release -
+  // sections are sorted into this order at render time rather than
+  // trusting the order they appear in the markdown. Unknown types
+  // (e.g. "Breaking Changes") keep their relative order and go last.
+  var SECTION_ORDER = ["added", "changed", "fixed", "removed", "security", "deprecated"];
+
+  function sectionRank(title) {
+    var idx = SECTION_ORDER.indexOf(String(title).trim().toLowerCase());
+    return idx === -1 ? SECTION_ORDER.length : idx;
+  }
+
+  // Reorders the "### " sections inside each "## " release block of a
+  // changelog's markdown into SECTION_ORDER. Anything before a release's
+  // first "### " heading (prose, etc.) stays put; each section moves as a
+  // whole (its heading plus every line up to the next "### "/"## ").
+  function sortSections(md) {
+    var lines = String(md).split("\n");
+    var out = [];
+    var sections = null;
+
+    function flush() {
+      if (!sections) return;
+      sections
+        .map(function (sec, i) { return { sec: sec, i: i }; })
+        .sort(function (a, b) {
+          return (sectionRank(a.sec.title) - sectionRank(b.sec.title)) || (a.i - b.i);
+        })
+        .forEach(function (entry) {
+          var body = entry.sec.lines;
+          // Keep a moved section separated from the one before it.
+          var prev = out.length ? out[out.length - 1].replace(/\r$/, "") : "";
+          if (prev.trim() !== "" && !/^#{1,2} /.test(prev)) {
+            out.push("");
+          }
+          Array.prototype.push.apply(out, body);
+        });
+      sections = null;
+    }
+
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i].replace(/\r$/, "");
+      if (/^#{1,2} /.test(line)) {
+        flush();
+        out.push(lines[i]);
+      } else if (/^### /.test(line)) {
+        if (!sections) sections = [];
+        sections.push({ title: line.replace(/^### /, ""), lines: [lines[i]] });
+      } else if (sections) {
+        sections[sections.length - 1].lines.push(lines[i]);
+      } else {
+        out.push(lines[i]);
+      }
+    }
+    flush();
+    return out.join("\n");
+  }
 
   function escapeHtml(str) {
     return String(str)
@@ -41,7 +99,7 @@
   }
 
   function parseChangelog(md) {
-    var lines = md.split("\n");
+    var lines = sortSections(md).split("\n");
     var html = "";
     var inList = false;
     var inBlock = false;
@@ -132,6 +190,9 @@
       escapeHtml: escapeHtml,
       inlineFormat: inlineFormat,
       sectionClass: sectionClass,
+      sectionRank: sectionRank,
+      sortSections: sortSections,
+      SECTION_ORDER: SECTION_ORDER,
       parseChangelog: parseChangelog
     };
   }

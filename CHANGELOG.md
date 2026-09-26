@@ -4,6 +4,17 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.8.7] - 2026-09-26
+
+### Changed
+- Changelog pages now sort each release's `###` sections into a fixed order at render time — Added, Changed, Fixed, Removed, Security, Deprecated, with unknown types (e.g. "Breaking Changes") last — instead of trusting the markdown's order.
+- Changelog badges use the shared type palette: Added `#2ecc71`, Changed `#3ba7ff`, Fixed `#ffa64d`, Removed `#ff4d4d`, Security `#b06bff`, Deprecated `#8a8a94` (darker shades of the same hues on the light theme). Deprecated sections get their own badge instead of the generic one.
+- `.gitignore` now ignores Python `__pycache__/` directories.
+- CHANGELOG sections reordered to Added, Changed, Fixed, Removed, Security, Deprecated.
+
+### Security
+- `dev-server.py`'s `/dev-sibling/<repo>/...` route now refuses any path that resolves outside the sibling checkout (`..` segments, absolute paths, symlinks pointing out) and answers it with a plain 404, so the local dev server can't be used to read arbitrary files. Covered by the new `tests/test_dev_server.py`.
+
 ## [1.8.6] - 2026-09-23
 
 ### Fixed
@@ -109,14 +120,14 @@ of the [Engine](https://github.com/TWRAR/Engine)'s own version.
   (`/guides`, `/legal`, ...) so nothing else needed updating; only the
   moved pages' own relative asset/script paths gained a `../`.
 
-### Removed
-- **`changelog.js`** — a stray, unreferenced one-line placeholder file
-  (`changelog.html` redirects client-side and never loaded it).
-
 ### Fixed
 - README's `Structure` section was an abbreviated summary rather than
   every actual file. Rewrote it to exhaustively list the current file
   set, and added a `Testing` section.
+
+### Removed
+- **`changelog.js`** — a stray, unreferenced one-line placeholder file
+  (`changelog.html` redirects client-side and never loaded it).
 
 ## [1.6.0] - 2026-09-12
 
@@ -200,6 +211,10 @@ of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
 ## [1.3.0] - 2026-09-10
 
+### Added
+- Releases page now carries a disclaimer that the CLI was discontinued
+  in Engine v3.0.0 and is no longer built or supported.
+
 ### Changed
 - Removed all CLI/hotkeys copy from `index.html` and `engine.html`,
   following Engine v3.0.0's discontinuation of the CLI (GUI-only from
@@ -213,10 +228,6 @@ of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 - Background now carries a subtle warm red tint in both themes, and "A
   StuxieDev Project" (footer bottom bar) is muted instead of
   accent-colored, underlining only on hover.
-
-### Added
-- Releases page now carries a disclaimer that the CLI was discontinued
-  in Engine v3.0.0 and is no longer built or supported.
 
 ### Fixed
 - The dev-mode banner was showing unconditionally, including in
@@ -240,19 +251,19 @@ of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 - `dev-server.py` now resolves pretty URLs (`/engine` → `engine.html`)
   locally, matching GitHub Pages' production behavior.
 
-### Fixed
-- The dev-mode banner was showing unconditionally, including in
-  production: `.env-banner` was missing a `[hidden] { display: none; }`
-  override, so its own `display: flex` rule beat the browser's native
-  `hidden` attribute. Also reverted its color back to TIGHC/TS4RLS's
-  amber/black (an earlier red recolor was wrong).
-
 ### Changed
 - Background now carries a subtle warm red tint in both themes,
   matching how TIGHC (purple) and TS4RLS (green) tint theirs, instead
   of a neutral gray.
 - "A StuxieDev Project" (footer bottom bar) is now muted instead of
   accent-colored, and only underlines on hover.
+
+### Fixed
+- The dev-mode banner was showing unconditionally, including in
+  production: `.env-banner` was missing a `[hidden] { display: none; }`
+  override, so its own `display: flex` rule beat the browser's native
+  `hidden` attribute. Also reverted its color back to TIGHC/TS4RLS's
+  amber/black (an earlier red recolor was wrong).
 
 ## [1.1.1] - 2026-09-10
 

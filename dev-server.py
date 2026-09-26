@@ -24,6 +24,27 @@ SIBLINGS = {
 }
 
 
+# translate_path() must return a filesystem path; this one never exists, so a
+# rejected request falls through to the normal 404 handling.
+REJECTED_PATH = os.path.join(WEB_DIR, ".dev-server-rejected-path")
+
+
+def resolve_sibling_path(real_dir, rest):
+    """Map the part of a /dev-sibling/<key>/... URL after the prefix onto a
+    file inside real_dir. Returns None if the resolved path would land
+    outside real_dir (".." segments, absolute paths, symlinks pointing out),
+    so the dev server can never be used to read arbitrary local files."""
+    base = os.path.realpath(real_dir)
+    if not rest:
+        return base
+    candidate = os.path.realpath(os.path.join(base, *rest.split("/")))
+    try:
+        inside = os.path.commonpath([base, candidate]) == base
+    except ValueError:  # different drives on Windows
+        inside = False
+    return candidate if inside else None
+
+
 def parse_args(argv):
     port = 8000
     dev_mode = True
@@ -78,7 +99,11 @@ class DevHandler(http.server.SimpleHTTPRequestHandler):
             prefix = "/dev-sibling/" + key
             if path == prefix or path.startswith(prefix + "/"):
                 rest = path[len(prefix):].lstrip("/")
-                return os.path.join(real_dir, *rest.split("/")) if rest else real_dir
+                resolved = resolve_sibling_path(real_dir, rest)
+                # Anything that would escape the sibling checkout (e.g. a raw
+                # "/dev-sibling/engine/../../secret" request) is answered as a
+                # plain 404 instead of being served.
+                return resolved if resolved is not None else REJECTED_PATH
         translated = super().translate_path(path)
         # Pretty URLs: GitHub Pages serves /foo from foo.html - and prefers
         # that .html file over a same-named foo/ directory, which is why

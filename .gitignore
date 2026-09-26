@@ -1,2 +1,5 @@
 .DS_Store
 dev-config.js
+
+# Python bytecode (dev-server.py / tests)
+__pycache__/
