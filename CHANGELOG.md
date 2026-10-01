@@ -4,6 +4,12 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.9.1] - 2026-10-01
+
+### Fixed
+
+- The footer's Created-with icons are optically sized, so the heart no longer looks bigger than the code and coffee icons
+
 ## [1.9.0] - 2026-10-01
 
 ### Added

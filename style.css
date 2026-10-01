@@ -439,6 +439,10 @@ code {
 .cw-love { color: #e25555; }
 .cw-code { color: #2e9e5b; }
 .cw-coffee { color: #a8703c; }
+/* Created-with icons: optical sizing so the heart is not bigger than code and coffee */
+.footer-created .fa-heart { font-size: .85em; vertical-align: -.125em; }
+.footer-created .fa-code { font-size: 1em; vertical-align: -.125em; }
+.footer-created .fa-mug-hot { font-size: .95em; vertical-align: -.125em; }
 .footer-sr {
   position: absolute;
   width: 1px;
