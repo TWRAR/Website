@@ -18,6 +18,10 @@ The six pages under `legal/` are each their own `.html` file, linked from
 `legal/index.html`'s hub grid and from every page's footer. Keep
 new/edited copy in the same plain-English tone as the existing pages.
 
+## Sitemap
+
+`sitemap.xml`, `sitemap/index.html` and `robots.txt` are generated: after adding or removing a public page, edit the `PAGES` list in `scripts/build-sitemap.py`, run `python scripts/build-sitemap.py`, and commit the result. `python -m unittest discover -s tests` checks them.
+
 ## Release flow
 
 1. Update `CHANGELOG.md`.

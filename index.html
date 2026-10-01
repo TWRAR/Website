@@ -28,10 +28,10 @@
 <link rel="stylesheet" href="assets/fontawesome/css/solid.min.css">
 <link rel="stylesheet" href="assets/fontawesome/css/brands.min.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/site-banner.css">
 </head>
 <body>
 
-<div class="env-banner env-banner-dev" id="dev-banner" hidden><span><strong class="env-banner-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Development Mode</strong><span class="env-banner-detail" id="dev-banner-detail"></span></span></div>
 
 <header class="site-header">
   <div class="container header-inner">
@@ -190,6 +190,7 @@ python gui.py</code></pre>
       <a href="/steam"><i class="fa-brands fa-steam" aria-hidden="true"></i> Steam Artwork</a>
       <a href="https://github.com/TWRAR/Engine/issues"><i class="fa-solid fa-comment" aria-hidden="true"></i> Issues &amp; contact</a>
       <a href="/legal"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Boring Legal Stuff</a>
+      <a href="/sitemap"><i class="fa-solid fa-sitemap" aria-hidden="true"></i> Sitemap</a>
       <a href="https://stuxie.dev">Written &amp; Maintained by <img src="https://global.media.stuxie.dev/icon.png" alt="" class="footer-avatar"> StuxieDev</a>
     </div>
   </div>
@@ -199,13 +200,21 @@ python gui.py</code></pre>
         Only point TWRAR at sites and content you own or otherwise have
         explicit authorization to automate.
       </p>
-      <p class="footer-note"><a href="https://projects.stuxie.dev">A StuxieDev Project</a></p>
+      <div class="footer-brand-row">
+        <a href="https://stuxie.dev" class="footer-mark-link" target="_blank" rel="noopener"><img src="https://global.media.stuxie.dev/logo.png" alt="StuxieDev" title="StuxieDev" class="footer-mark" height="28"></a>
+        <span class="footer-service-sep" aria-hidden="true">|</span>
+        <a href="https://projects.stuxie.dev" class="footer-service-text">A StuxieDev Project</a>
+      </div>
+      <p class="footer-note footer-created">Created with <i class="fa-solid fa-heart cw-love" aria-hidden="true" title="Love"></i> / <i class="fa-solid fa-code cw-code" aria-hidden="true" title="Code"></i> / <i class="fa-solid fa-mug-hot cw-coffee" aria-hidden="true" title="Coffee"></i><span class="footer-sr"> love, code and coffee</span> by <a href="https://stuxie.dev">StuxieDev</a></p>
+      <p class="footer-note footer-copy"><i class="fa-solid fa-copyright" aria-hidden="true" title="Copyright"></i><span class="footer-sr">Copyright</span> 2026 Stux.Group. All rights reserved.</p>
     </div>
   </div>
 </footer>
 
 <script src="script.js"></script>
 <script src="dev-config.js"></script>
+<script src="assets/site-banners.js"></script>
+<script src="assets/site-banner.js"></script>
 <script src="versions.js"></script>
 </body>
 </html>

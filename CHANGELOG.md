@@ -4,6 +4,19 @@ All notable changes to this project are documented here. Versioning follows
 [Semantic Versioning](https://semver.org/) (`MAJOR.MINOR.PATCH`), independent
 of the [Engine](https://github.com/TWRAR/Engine)'s own version.
 
+## [1.9.0] - 2026-10-01
+
+### Added
+- The shared Stux site banner (`assets/site-banner.css`, `assets/site-banner.js`, loaded through `assets/site-banners.js`) replaces the old amber "Development Mode" bar. It shows only while `dev-server.sh`/`.bat` runs (when `dev-config.js` defines `window.TWRAR_DEV`); `?banner=soon,maintenance,site` previews the other variants locally, production never shows one, and it sits above the sticky header without covering it
+- `/sitemap` (an HTML page in the site's layout listing every public page) and `sitemap.xml`, committed as static files and regenerated with `python scripts/build-sitemap.py` (`lastmod` comes from each page's last git commit); `robots.txt` points at it and the footer links to it. `tests/test_sitemap.py` checks them
+- Footer: the StuxieDev logo (28px, grey until hovered or focused) next to "A StuxieDev Project", a "Created with love / code / coffee by StuxieDev" line and a copyright line with an icon. The site is on GitHub Pages, so there is no Powered by Stuxedo badge
+
+### Changed
+- `dev-config.js` (written by `dev-server.py`) no longer reveals a banner element itself; the banner script reads its dev flag instead
+
+### Removed
+- The `#dev-banner` element on every page and its `.env-banner` styles
+
 ## [1.8.7] - 2026-09-26
 
 ### Changed

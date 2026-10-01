@@ -5,11 +5,10 @@ Serves this folder the way GitHub Pages does. DEV_MODE is forced on by
 default: it writes dev-config.js (gitignored, never deployed) so
 versions.js fetches Engine/Website content from the sibling checkouts next
 to this one (../Engine) instead of GitHub - so local edits to that repo's
-CHANGELOG.md/VERSION.md show up here without pushing first - and reveals
-the `#dev-banner` element every page already carries (hidden by default),
-same env-banner treatment as TIGHC/Stuxs.Tools. Pass --no-dev-mode to fetch
-from GitHub instead, matching production (the banner then stays hidden,
-since dev-config.js is never written).
+CHANGELOG.md/VERSION.md show up here without pushing first - and defines
+window.TWRAR_DEV, which assets/site-banners.js uses to show the dev banner.
+Pass --no-dev-mode to fetch from GitHub instead, matching production (no
+banner, since dev-config.js is never written).
 """
 import http.server
 import os
@@ -74,15 +73,6 @@ def write_dev_config(dev_mode, port):
         "  },",
         "  port: %d" % port,
         "};",
-        "(function () {",
-        "  var banner = document.getElementById('dev-banner');",
-        "  var detail = document.getElementById('dev-banner-detail');",
-        "  if (detail) {",
-        "    detail.textContent = 'TWRAR Website running on :' + window.TWRAR_DEV.port +",
-        "      ' \\u2014 Engine content served from local sibling checkout, not GitHub.';",
-        "  }",
-        "  if (banner) banner.hidden = false;",
-        "})();",
         "console.log('[TWRAR dev mode] Engine/Website content is loaded from local sibling checkouts, not GitHub.');",
     ]
     with open(path, "w", encoding="utf-8") as f:
