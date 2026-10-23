@@ -54,6 +54,8 @@ guides/developer.html     # running this site locally (see Local development bel
 assets/icon.png           # copied from the Engine repo's assets/
 assets/logo.png
 assets/favicon.ico
+assets/icon-192.png, icon-512.png, icon-maskable-512.png   # manifest icons
+favicon.ico / apple-touch-icon.png / site.webmanifest   # favicon set, linked from every page
 assets/steam.html         # /assets/steam — redirects to the Engine's TWRAR Steam assets zip
 assets/steam/*.png        # generated Steam library artwork (6 files), copied from the
                           # Engine's scripts/steam_asset_builder.py output
@@ -62,6 +64,9 @@ assets/fontawesome/       # Font Awesome Free (vendored, self-hosted — see its
 tests/changelogs.test.js  # node:test unit tests for changelogs.js
 tests/releases.test.js    # node:test unit tests for releases.js
 tests/versions.test.js    # node:test unit tests for versions.js
+tests/test_head.py         # checks the favicon tags and Discord embed in every page's <head>
+tests/version.sh           # checks VERSION.md is a valid Date Version
+scripts/build-head.py      # writes the favicon tags + Discord embed into every page's <head> (re-run after editing a title/description)
 .github/workflows/ci.yml  # runs `node --test` and html-validate on every push/PR
 
 dev-server.py             # local dev server shared by dev-server.sh/.bat (see Local development below)
@@ -130,3 +135,7 @@ every push and pull request.
 *Written & Maintained by <img src="https://global.media.stuxie.dev/icon.png" height="14" alt="StuxieDev" valign="middle"> [StuxieDev](https://stuxie.dev).*
 
 *[A StuxieDev Project](https://projects.stuxie.dev)*
+
+## Versioning
+
+This project uses [Date Versioning](https://datevers.ing): each release is numbered by its UTC release date as `YY.MM.DD` (for example `26.10.23`), with `-1`, `-2`… for later releases the same day. See [CHANGELOG.md](CHANGELOG.md) for what changed in each release.

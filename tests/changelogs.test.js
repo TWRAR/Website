@@ -221,3 +221,11 @@ test("parseChangelog", async (t) => {
     assert.match(html, /&lt;img src=x onerror=alert\(1\)&gt;/);
   });
 });
+
+test("Date Versioning headings", async (t) => {
+  await t.test("renders ## vYY.MM.DD and ## vYY.MM.DD-N headings as releases", () => {
+    const html = parseChangelog(["## v26.10.23-1", "", "### Fixed", "", "- a", "", "## v26.10.23", "", "### Added", "", "- b", ""].join(String.fromCharCode(10)));
+    assert.match(html, /<h2 class="cl-version">v26[.]10[.]23-1<\/h2>/);
+    assert.match(html, /<h2 class="cl-version">v26[.]10[.]23<\/h2>/);
+  });
+});
